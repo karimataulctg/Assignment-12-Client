@@ -25,35 +25,37 @@ const MyProducts = () => {
   };
 
   return (
-    <div className="my-products-page">
-      <h1>My Products</h1>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Product Name</th>
-            <th>Votes</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>{product.votes}</td>
-              <td>{product.status}</td>
-              <td>
-                <Link to={`/update-product/${product.id}`} className="btn btn-sm btn-primary">
-                  Update
-                </Link>
-                <button onClick={() => handleDelete(product.id)} className="btn btn-sm btn-danger">
-                  Delete
-                </button>
-              </td>
+    <div className="my-products-page min-h-screen flex flex-col items-center bg-gray-100 p-6">
+      <h1 className="text-3xl font-bold mb-6">My Products</h1>
+      <div className="overflow-x-auto w-full max-w-5xl">
+        <table className="table w-full bg-white rounded-lg shadow-md">
+          <thead className="bg-gray-200">
+            <tr>
+              <th className="py-2 px-4">Product Name</th>
+              <th className="py-2 px-4">Votes</th>
+              <th className="py-2 px-4">Status</th>
+              <th className="py-2 px-4">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr key={product._id} className="border-b">
+                <td className="py-2 px-4">{product.name}</td>
+                <td className="py-2 px-4">{product.votes}</td>
+                <td className="py-2 px-4">{product.status}</td>
+                <td className="py-2 px-4 flex space-x-2">
+                  <Link to={`/update-product/${product.id}`} className="btn btn-sm btn-primary">
+                    Update
+                  </Link>
+                  <button onClick={() => handleDelete(product.id)} className="btn btn-sm btn-danger">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

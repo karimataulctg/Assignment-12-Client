@@ -11,6 +11,8 @@ import Login from './Login/Login.jsx';
 import Register from './Login/Register.jsx';
 import Home from './components/Home.jsx';
 import PageNotFound from './components/PageNotFound.jsx';
+import PrivateRoutes from './routes/PrivateRoutes.jsx';
+import Dashboard from './pages/Dashboard.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,20 @@ const router = createBrowserRouter([
    
     ]
   },
+  {
+    path: "dashboard", 
+    element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
+    children: [
+      // {
+      //   path: 'cart',
+      //   element: <Cart></Cart>
+      // },
+      // {
+      //   path: 'allUsers',
+      //   element: <AllUsers></AllUsers>
+      // },
+    ]
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

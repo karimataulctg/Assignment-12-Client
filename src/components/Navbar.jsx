@@ -49,7 +49,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar sticky z-10 top-0 opacity-80 bg-blue-800 text-white shadow-lg">
+    <div className="navbar sticky z-10 top-0 opacity-80 bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800 text-white shadow-lg">
       {/* Navbar Start */}
       <div className="navbar-start flex items-center space-x-2">
         <img src={logo} alt="Logo" className="w-10 h-10" />
@@ -75,14 +75,11 @@ const Navbar = () => {
             <button
               className="flex items-center text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
               onClick={() => {
-                if (!user || !user.email) {
-                  navigate("/login");
-                } else {
-                  navigate("/books");
+                  navigate("/dashboard");
                 }
-              }}
+              }
             >
-              All Books
+              Dashboard
             
             </button>
             

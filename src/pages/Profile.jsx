@@ -1,8 +1,6 @@
 import { useContext } from 'react';
-// import { AuthContext } from '../AuthProvider';
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import { AuthContext } from '../AuthProvider';
+import Swal from 'sweetalert2';
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -25,19 +23,26 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile-page">
-      <h1>Profile Page</h1>
-      <img src={user.photoURL} alt={user.displayName} />
-      <p>Name: {user.displayName}</p>
-      <p>Email: {user.email}</p>
-      {user.subscriptionStatus !== 'subscribed' && (
-        <button onClick={handleSubscribe} className="btn">
-          Subscribe {subscriptionAmount}
-        </button>
-      )}
-      {user.subscriptionStatus === 'subscribed' && (
-        <p>Status: Verified</p>
-      )}
+    <div className="profile-page flex flex-col items-center bg-gray-100 min-h-screen p-6">
+      <div className="card w-full max-w-xl bg-white p-6 rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold mb-4">Profile Page</h1>
+        {user ? (
+          <>
+            <img src={user.photoURL} alt={user.displayName} className="rounded-full w-32 h-32 mx-auto mb-4" />
+            <p className="text-lg font-semibold">Name: {user.displayName}</p>
+            <p className="text-lg font-semibold mb-4">Email: {user.email}</p>
+            {user.subscriptionStatus !== 'subscribed' ? (
+              <button onClick={handleSubscribe} className="btn btn-primary w-full mb-2">
+                Subscribe {subscriptionAmount}
+              </button>
+            ) : (
+              <p className="text-green-500 text-lg font-semibold">Status: Verified</p>
+            )}
+          </>
+        ) : (
+          <p className="text-center text-lg font-semibold">Loading user information...</p>
+        )}
+      </div>
     </div>
   );
 };
