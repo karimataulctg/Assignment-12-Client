@@ -28,7 +28,7 @@ const FeaturedProducts = () => {
           <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
           <div className="p-4">
             <h3 className="text-xl font-bold mb-2">
-              <a href={`/product/${product.id}`} className="hover:underline">{product.name}</a>
+              <a href={`/productDetails/${product.id}`} className="hover:underline">{product.name}</a>
             </h3>
             <div className="tags mb-4">
               {product.tags.map((tag) => (
