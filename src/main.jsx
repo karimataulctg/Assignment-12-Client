@@ -16,6 +16,7 @@ import Dashboard from './pages/Dashboard.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Profile from './pages/Profile.jsx';
 import MyProducts from './pages/MyProducts.jsx';
+import AddProduct from './pages/AddProduct.jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,14 +33,10 @@ const router = createBrowserRouter([
     path: "dashboard",
     element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
     children: [
-      // {
-      //   path: 'cart',
-      //   element: <Cart></Cart>
-      // },
-      // {
-      //   path: 'allUsers',
-      //   element: <AllUsers></AllUsers>
-      // },
+      {
+        path: 'addProduct',
+        element: <AddProduct></AddProduct>
+      },
       {
         path: 'myProducts',
         element: <MyProducts></MyProducts>

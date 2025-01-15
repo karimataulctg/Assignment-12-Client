@@ -76,7 +76,7 @@ const AddProduct = () => {
             </div>
             <div className="form-control">
               <label className="label">Tags</label>
-              <TagsInput value={tags} onChange={setTags} name="tags" className="input input-bordered w-full" />
+              <TagsInput value={tags} onChange={setTags} name="tags" placeHolder="Enter tags" />
             </div>
             <div className="form-control">
               <label className="label">External Links</label>

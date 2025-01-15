@@ -1,17 +1,16 @@
 import React from 'react';
 import Carousel from './Carousel';
-import AddProduct from '../pages/AddProduct';
-import MyProducts from '../pages/MyProducts';
-import Profile from '../pages/Profile';
+import FeaturedProducts from '../homePage/FeaturedProducts';
+import TrendingProducts from '../homePage/TrendingProducts';
 
 const Home = () => {
     return (
         <div>
             <h1>This is Home Page</h1>
             <Carousel></Carousel>
-            <AddProduct></AddProduct>
-            <MyProducts></MyProducts>
-            <Profile></Profile>
+            <FeaturedProducts></FeaturedProducts>
+            <TrendingProducts></TrendingProducts>
+            
             
         </div>
     );

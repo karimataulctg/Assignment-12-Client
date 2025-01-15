@@ -14,7 +14,7 @@ const Dashboard = () => {
 
     return (
         <div className='flex'>
-            <div className='w-64 min-h-screen bg-orange-400'>
+            <div className='w-64 text-white min-h-screen bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800'>
                 <ul className='menu'>
                     {
                         isAdmin ? <>
@@ -75,14 +75,14 @@ const Dashboard = () => {
                     </li>
                     
                     <li>
-                        <NavLink to={"/dashboard/review"}>
+                        <NavLink to={"/dashboard/addProduct"}>
                         <FaAddressBook></FaAddressBook>
-                        Add a Review</NavLink>
+                        Add Product</NavLink>
                     </li>
                     <li>
-                        <NavLink to={"/dashboard/bookings"}>
+                        <NavLink to={"/dashboard/myProducts"}>
                         <FaBook></FaBook>
-                        My Bookings</NavLink>
+                        My Products</NavLink>
                     </li>
                     <li>
                         <NavLink to={"/dashboard/profile"}>
