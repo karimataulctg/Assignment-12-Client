@@ -1,6 +1,6 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -13,25 +13,23 @@ import Home from './components/Home.jsx';
 import PageNotFound from './components/PageNotFound.jsx';
 import PrivateRoutes from './routes/PrivateRoutes.jsx';
 import Dashboard from './pages/Dashboard.jsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Profile from './pages/Profile.jsx';
+import MyProducts from './pages/MyProducts.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<MainLayout></MainLayout>,
+    element: <MainLayout></MainLayout>,
     children: [
-      { path: "/", 
-        element: <Home></Home> },
-      { path: "login",
-         element: <Login></Login> },
-      { path: "register",
-         element: <Register></Register>},
-      {path: "*",
-         element: <PageNotFound></PageNotFound>},
-   
+      { path: "/", element: <Home></Home> },
+      { path: "login", element: <Login></Login> },
+      { path: "register", element: <Register></Register> },
+      { path: "*", element: <PageNotFound></PageNotFound> },
     ]
   },
   {
-    path: "dashboard", 
+    path: "dashboard",
     element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
     children: [
       // {
@@ -42,12 +40,29 @@ const router = createBrowserRouter([
       //   path: 'allUsers',
       //   element: <AllUsers></AllUsers>
       // },
+      {
+        path: 'myProducts',
+        element: <MyProducts></MyProducts>
+      },
+      {
+        path: 'profile',
+        element: <Profile></Profile>
+      }
     ]
   }
 ]);
 
+// Create an instance of QueryClient
+const queryClient = new QueryClient();
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider><RouterProvider router={router} /></AuthProvider>
-  </StrictMode>,
-)
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <div className="max-w-7xl mx-auto">
+          <RouterProvider router={router} />
+        </div>
+      </QueryClientProvider>
+    </AuthProvider>
+  </StrictMode>
+);

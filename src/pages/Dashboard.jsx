@@ -2,6 +2,9 @@ import React from 'react';
 import { FaEnvelope, FaHome, FaList, FaMoneyCheckAlt, FaSearch, FaShoppingCart, FaUsers, FaUtensils, FaVoicemail } from 'react-icons/fa';
 import { FaAddressBook, FaBook, FaCalendar } from 'react-icons/fa6';
 import { NavLink, Outlet } from 'react-router-dom';
+import useAdmin from '../hooks/useAdmin';
+import useCart from '../hooks/useCart';
+import Profile from './Profile';
 
 
 
@@ -44,6 +47,7 @@ const Dashboard = () => {
                         All Users</NavLink>
                     </li>
                    
+                   
                         </>
                         : 
                         <>
@@ -80,6 +84,12 @@ const Dashboard = () => {
                         <FaBook></FaBook>
                         My Bookings</NavLink>
                     </li>
+                    <li>
+                        <NavLink to={"/dashboard/profile"}>
+                        <FaUsers></FaUsers>
+                        My Profile</NavLink>
+                    </li>
+                    
                         </>
                     }
 
