@@ -4,7 +4,7 @@ import logo from '../assets/Logo.png'
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 text-white py-8">
+    <footer className="bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800 text-white py-8">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between items-center">
           {/* Address Section */}
@@ -47,7 +47,7 @@ const Footer = () => {
           </div>
           
           <div>
-          <p className="text-sm">&copy; {new Date().getFullYear()} Library Management System. All rights reserved.</p>
+          <p className="text-sm">&copy; {new Date().getFullYear()} Product Hunt. All rights reserved.</p>
           </div>
         </div>
       </div>

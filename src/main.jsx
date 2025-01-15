@@ -10,6 +10,7 @@ import AuthProvider from './AuthProvider.jsx';
 import Login from './Login/Login.jsx';
 import Register from './Login/Register.jsx';
 import Home from './components/Home.jsx';
+import PageNotFound from './components/PageNotFound.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,8 +19,12 @@ const router = createBrowserRouter([
     children: [
       { path: "/", 
         element: <Home></Home> },
-      { path: "login", element: <Login></Login> },
-      { path: "register", element: <Register></Register>},
+      { path: "login",
+         element: <Login></Login> },
+      { path: "register",
+         element: <Register></Register>},
+      {path: "*",
+         element: <PageNotFound></PageNotFound>},
    
     ]
   },

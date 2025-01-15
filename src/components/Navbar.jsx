@@ -49,7 +49,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-gray-800 text-white shadow-lg">
+    <div className="navbar sticky z-10 top-0 opacity-80 bg-blue-800 text-white shadow-lg">
       {/* Navbar Start */}
       <div className="navbar-start flex items-center space-x-2">
         <img src={logo} alt="Logo" className="w-10 h-10" />
