@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 const Profile = () => {
   const { user } = useContext(AuthContext);
   const subscriptionAmount = "20 USD"; // This can be dynamic based on your logic
-  
+
   const handleSubscribe = () => {
     Swal.fire({
       title: 'Subscribe',
@@ -28,7 +28,15 @@ const Profile = () => {
         <h1 className="text-2xl font-bold mb-4">Profile Page</h1>
         {user ? (
           <>
-            <img src={user.photoURL} alt={user.displayName} className="rounded-full w-32 h-32 mx-auto mb-4" />
+            {user.photoURL ? (
+              <img src={user.photoURL} alt={user.displayName} className="rounded-full w-32 h-32 mx-auto mb-4" />
+            ) : (
+              <div className="rounded-full w-32 h-32 bg-gray-300 flex items-center justify-center mx-auto mb-4">
+                <span className="text-4xl font-bold text-gray-600">
+                  {user.displayName.charAt(0).toUpperCase()}
+                </span>
+              </div>
+            )}
             <p className="text-lg font-semibold">Name: {user.displayName}</p>
             <p className="text-lg font-semibold mb-4">Email: {user.email}</p>
             {user.subscriptionStatus !== 'subscribed' ? (

@@ -25,7 +25,7 @@ const AllProducts = () => {
                 ))}
               </div>
               <button
-                onClick={() => navigate(`/product/${product._id}`)}
+                onClick={() => navigate(`/productDetails/${product._id}`)}
                 className="btn btn-primary w-full"
               >
                 Details

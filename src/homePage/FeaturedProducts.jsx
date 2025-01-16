@@ -6,7 +6,7 @@ import { FaThumbsUp } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const FeaturedProducts = () => {
-  const { data: products, isLoading, error } = useFeaturedProducts();
+  const { data: products, isLoading, error, refetch } = useFeaturedProducts();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -17,8 +17,23 @@ const FeaturedProducts = () => {
     if (!user) {
       navigate('/login');
     } else {
-      // Upvote logic (e.g., send a POST request to the server)
-      Swal.fire('Upvoted!', 'Your vote has been counted.', 'success');
+      fetch(`http://localhost:5000/products/${product._id}/upvote`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: user.email })
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === 'Product upvoted successfully') {
+          Swal.fire('Upvoted!', 'Your vote has been counted.', 'success');
+          refetch(); // Refetch product list to update the vote count
+        } else {
+          Swal.fire('Error', data.message, 'error');
+        }
+      })
+      .catch((error) => Swal.fire('Error', error.message, 'error'));
     }
   };
 
@@ -41,7 +56,7 @@ const FeaturedProducts = () => {
                 </div>
                 <button
                   onClick={() => handleUpvote(product)}
-                  disabled={product.owner.email === user?.email}
+                  disabled={product.upvotedBy && product.upvotedBy.includes(user?.email)}
                   className="btn btn-primary w-full flex items-center justify-center"
                 >
                   <FaThumbsUp className="mr-2" />

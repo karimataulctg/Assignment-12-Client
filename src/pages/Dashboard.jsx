@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaEnvelope, FaHome, FaList, FaMoneyCheckAlt, FaSearch, FaShoppingCart, FaUsers, FaUtensils, FaVoicemail } from 'react-icons/fa';
 import { FaAddressBook, FaBook, FaCalendar } from 'react-icons/fa6';
 import { NavLink, Outlet } from 'react-router-dom';
@@ -10,6 +10,7 @@ import Profile from './Profile';
 
 const Dashboard = () => {
     const [cart] = useCart();
+    
     const [isAdmin] = useAdmin();
 
     return (
@@ -82,7 +83,7 @@ const Dashboard = () => {
                     <li>
                         <NavLink to={"/dashboard/myProducts"}>
                         <FaBook></FaBook>
-                        My Products</NavLink>
+                        My Products </NavLink>
                     </li>
                     <li>
                         <NavLink to={"/dashboard/profile"}>

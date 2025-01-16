@@ -98,14 +98,7 @@ const Navbar = () => {
               Products
             </button>
           </li>
-          <li>
-            <Link
-              to="/allProducts"
-              className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
-            >
-              Borrowed Books
-            </Link>
-          </li>
+          
         </ul>
       </div>
       {/* Navbar End */}

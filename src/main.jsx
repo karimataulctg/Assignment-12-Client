@@ -19,6 +19,7 @@ import MyProducts from './pages/MyProducts.jsx';
 import AddProduct from './pages/AddProduct.jsx';
 import ProductDetails from './homePage/ProductDetails.jsx';
 import AllProducts from './homePage/AllProducts.jsx';
+import UpdateProduct from './pages/UpdateProduct.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       { path: "register", element: <Register></Register> },
       {path: "/productDetails/:id", element: <ProductDetails></ProductDetails>},
       {path: 'allProducts', element: <AllProducts></AllProducts> },
+      {
+        path: '/updateProduct/:id',
+        element: <UpdateProduct></UpdateProduct>
+      },
       { path: "*", element: <PageNotFound></PageNotFound> },
     ]
   },
@@ -45,6 +50,7 @@ const router = createBrowserRouter([
         path: 'myProducts',
         element: <MyProducts></MyProducts>
       },
+     
       {
         path: 'profile',
         element: <Profile></Profile>
