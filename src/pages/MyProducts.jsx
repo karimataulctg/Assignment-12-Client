@@ -19,7 +19,7 @@ const MyProducts = () => {
       .then((res) => res.json())
       .then((data) => {
         Swal.fire('Deleted', 'Your product has been deleted', 'success');
-        setProducts(products.filter((product) => product.id !== productId));
+        setProducts(products.filter((product) => product._id !== productId));
       })
       .catch((error) => Swal.fire('Error', error.message, 'error'));
   };
@@ -44,10 +44,10 @@ const MyProducts = () => {
                 <td className="py-2 px-4">{product.votes}</td>
                 <td className="py-2 px-4">{product.status}</td>
                 <td className="py-2 px-4 flex space-x-2">
-                  <Link to={`/update-product/${product.id}`} className="btn btn-sm btn-primary">
+                  <Link to={`/update-product/${product._id}`} className="btn btn-sm btn-primary">
                     Update
                   </Link>
-                  <button onClick={() => handleDelete(product.id)} className="btn btn-sm btn-danger">
+                  <button onClick={() => handleDelete(product._id)} className="btn btn-sm btn-danger">
                     Delete
                   </button>
                 </td>

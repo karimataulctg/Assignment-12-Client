@@ -18,6 +18,7 @@ import Profile from './pages/Profile.jsx';
 import MyProducts from './pages/MyProducts.jsx';
 import AddProduct from './pages/AddProduct.jsx';
 import ProductDetails from './homePage/ProductDetails.jsx';
+import AllProducts from './homePage/AllProducts.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login></Login> },
       { path: "register", element: <Register></Register> },
       {path: "productDetails", element: <ProductDetails></ProductDetails>},
+      {path: 'allProducts', element: <AllProducts></AllProducts> },
       { path: "*", element: <PageNotFound></PageNotFound> },
     ]
   },

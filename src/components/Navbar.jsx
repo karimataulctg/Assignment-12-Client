@@ -91,16 +91,16 @@ const Navbar = () => {
                 if (!user || !user.email) {
                   navigate("/login");
                 } else {
-                  navigate("/addBook");
+                  navigate("/allProducts");
                 }
               }}
             >
-              Add Book
+              Products
             </button>
           </li>
           <li>
             <Link
-              to="/borrowedBooks"
+              to="/allProducts"
               className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
             >
               Borrowed Books
