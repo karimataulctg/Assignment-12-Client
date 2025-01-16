@@ -6,7 +6,7 @@ const useFeaturedProducts = () => {
     queryKey: ['featuredProducts'],
     queryFn: async () => {
       const response = await axios.get('http://localhost:5000/products?featured=true');
-      return response.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      return response.data;
     }
   });
 };
