@@ -22,7 +22,10 @@ const FeaturedProducts = () => {
   };
 
   return (
+    <>
+    <h2 className="text-center text-2xl font-bold my-6">Featured Products</h2>
     <div className="featured-products grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+      
       {products.map((product) => (
         <div key={product._id} className="card bg-white shadow-md rounded-lg overflow-hidden">
           <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
@@ -47,6 +50,7 @@ const FeaturedProducts = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 
