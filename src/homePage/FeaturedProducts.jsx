@@ -4,6 +4,7 @@ import useFeaturedProducts from '../hooks/useFeaturedProducts';
 import { AuthContext } from '../AuthProvider';
 import { FaThumbsUp } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { GiSelfLove } from "react-icons/gi";
 
 const FeaturedProducts = () => {
   const { data: products, isLoading, error, refetch } = useFeaturedProducts();
@@ -59,7 +60,7 @@ const FeaturedProducts = () => {
                   disabled={product.upvotedBy && product.upvotedBy.includes(user?.email)}
                   className="btn btn-primary w-full flex items-center justify-center"
                 >
-                  <FaThumbsUp className="mr-2" />
+                  <GiSelfLove  className="mr-2" />
                   {product.votes} Votes
                 </button>
               </div>

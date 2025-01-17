@@ -71,28 +71,11 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          <li className="dropdown relative group">
-            <button
-              className="flex items-center text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
-              onClick={() => {
-                  navigate("/dashboard");
-                }
-              }
-            >
-              Dashboard
-            
-            </button>
-            
-          </li>
           <li>
             <button
               className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
               onClick={() => {
-                if (!user || !user.email) {
-                  navigate("/login");
-                } else {
                   navigate("/allProducts");
-                }
               }}
             >
               Products
@@ -112,8 +95,14 @@ const Navbar = () => {
               alt="User Avatar"
               className="w-10 h-10 rounded-full border-2 border-gray-200 cursor-pointer"
             />
-            <div className="hidden group-hover:flex items-center absolute top-8 right-0 bg-slate-500 z-10 text-white p-2 rounded shadow-lg w-48">
-              <span className="block ">{user.displayName || user.email}</span>
+            <div className="hidden group-hover:flex items-center absolute top-8 right-0 bg-slate-500 z-10 text-white p-2 rounded shadow-lg w-80">
+              <span className="block mr-1 ">{user.displayName || user.email}</span>
+              <button 
+              onClick={() => {
+                navigate("/dashboard");
+              }
+            }
+              className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2 mr-1">Dashboard</button>
               <button
                 className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2"
                 onClick={handleSignOut}
@@ -159,36 +148,15 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/books"
+                to="/allProducts"
                 className="text-white hover:text-blue-400 py-2"
                 onClick={toggleMenu}
               >
-                All Books
+                Products
               </Link>
             </li>
-            <li>
-              <button
-                className="text-white hover:text-blue-400"
-                onClick={() => {
-                  if (!user || !user.email) {
-                    navigate("/login");
-                  } else {
-                    navigate("/addBook");
-                  }
-                }}
-              >
-                Add Book
-              </button>
-            </li>
-            <li>
-              <Link
-                to="/borrowedBooks"
-                className="text-white hover:text-blue-400 py-2"
-                onClick={toggleMenu}
-              >
-                Borrowed Books
-              </Link>
-            </li>
+           
+  
           </ul>
           <div className="flex items-center mt-4 w-full">
             {user ? (
@@ -199,15 +167,21 @@ const Navbar = () => {
                   className="w-8 h-8 rounded-full mr-2"
                 />
                 <span className="mr-2">{user.displayName || user.email}</span>
+                <button 
+              onClick={() => {
+                navigate("/dashboard");
+              }
+            }
+              className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2 mr-1">Dashboard</button>
                 <button
-                  className="bg-slate-700 hover:bg-slate-950 text-white px-1 py-1 rounded "
-                  onClick={handleSignOut}
-                >
-                  Log Out
-                </button>
+                className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2"
+                onClick={handleSignOut}
+              >
+                Log Out
+              </button>
               </>
             ) : (
-              <>
+              <div className="flex flex-col">
                 <Link
                   to="/login"
                   className="btn bg-sunflower-yellow text-dark-charcoal hover:bg-dark-sunflower-yellow w-full"
@@ -222,7 +196,7 @@ const Navbar = () => {
                 >
                   Register
                 </Link>
-              </>
+              </div>
             )}
           </div>
         </div>

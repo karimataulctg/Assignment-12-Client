@@ -20,8 +20,19 @@ const ProductDetails = () => {
     if (!user) {
       navigate('/login');
     } else {
-      // Upvote logic (e.g., send a POST request to the server)
-      Swal.fire('Upvoted!', 'Your vote has been counted.', 'success');
+      fetch(`http://localhost:5000/products/${id}/upvote`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: user.email })
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire('Upvoted!', 'Your vote has been counted.', 'success');
+        window.location.reload(); // Reload page to see updated vote count
+      })
+      .catch((error) => Swal.fire('Error', error.message, 'error'));
     }
   };
 
@@ -29,7 +40,6 @@ const ProductDetails = () => {
     if (!user) {
       navigate('/login');
     } else {
-      // Report logic (e.g., send a POST request to the server)
       Swal.fire('Reported!', 'This product has been reported.', 'success');
     }
   };
@@ -69,10 +79,10 @@ const ProductDetails = () => {
           </div>
           <div className="reviews-section mb-6">
             <h2 className="text-2xl font-bold mb-4">Reviews</h2>
-            <Reviews productId={product._id} />
+            <Reviews reviews={product.reviews || []} />
           </div>
           <div className="post-review-section">
-            <h2 className="text-2xl font-bold mb-4">Post a Review</h2>
+            {/* <h2 className="text-2xl font-bold mb-4">Post a Review</h2> */}
             <PostReview productId={product._id} />
           </div>
         </>
