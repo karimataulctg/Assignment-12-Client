@@ -1,25 +1,43 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const MyProducts = () => {
   const [products, setProducts] = useState([]);
+  const loggedInUser = JSON.parse(localStorage.getItem('user')); // Assuming user data is stored in localStorage
 
   useEffect(() => {
-    fetch('http://localhost:5000/products')
+    if (!loggedInUser) {
+      Swal.fire('Error', 'User not logged in', 'error');
+      return;
+    }
+
+    fetch(`http://localhost:5000/products?userId=${loggedInUser.id}`) // Fetch only user's products
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((error) => Swal.fire('Error', error.message, 'error'));
-  }, []);
+  }, [loggedInUser]);
 
   const handleDelete = (productId) => {
-    fetch(`http://localhost:5000/products/${productId}`, {
-      method: 'DELETE',
-    })
+    fetch(`http://localhost:5000/products/${productId}`, { method: 'DELETE' })
       .then((res) => res.json())
-      .then((data) => {
+      .then(() => {
         Swal.fire('Deleted', 'Your product has been deleted', 'success');
         setProducts(products.filter((product) => product._id !== productId));
+      })
+      .catch((error) => Swal.fire('Error', error.message, 'error'));
+  };
+
+  const handleStatusChange = (productId, status) => {
+    fetch(`http://localhost:5000/products/${productId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        Swal.fire('Updated', `Product status updated to ${status}.`, 'success');
+        setProducts(products.map((product) => (product._id === productId ? { ...product, status } : product)));
       })
       .catch((error) => Swal.fire('Error', error.message, 'error'));
   };
@@ -49,6 +67,12 @@ const MyProducts = () => {
                   </Link>
                   <button onClick={() => handleDelete(product._id)} className="btn btn-sm btn-danger">
                     Delete
+                  </button>
+                  <button onClick={() => handleStatusChange(product._id, 'Accepted')} className="btn btn-sm btn-success">
+                    Accept
+                  </button>
+                  <button onClick={() => handleStatusChange(product._id, 'Rejected')} className="btn btn-sm btn-warning">
+                    Reject
                   </button>
                 </td>
               </tr>

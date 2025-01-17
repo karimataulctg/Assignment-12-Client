@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Centering the text and button */
+.relative {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Remove shake styles if they were added before
+  // .shake-on-scroll {
+  //   animation: none;
+  // }
+  
+  // .shake-on-scroll.shake {
+  //   animation: shake 0.5s linear;
+  // }
+   */

@@ -72,7 +72,7 @@ const AuthProvider = ({ children }) => {
       console.log('State Captured', currentUser?.email);
       if (currentUser?.email){
         const user = {email: currentUser.email};
-        axios.post('https://library-server-green.vercel.app/jwt', user, {
+        axios.post('http://localhost:5000/jwt', user, {
           withCredentials: true,
         })
        
@@ -81,7 +81,7 @@ const AuthProvider = ({ children }) => {
         })
       }
       else {
-          axios.post('https://library-server-green.vercel.app/logout', {}, {
+          axios.post('http://localhost:5000/logout', {}, {
             withCredentials: true,
           })
           .then(res => {console.log('logout', res.data);

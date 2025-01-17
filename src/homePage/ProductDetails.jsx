@@ -40,7 +40,18 @@ const ProductDetails = () => {
     if (!user) {
       navigate('/login');
     } else {
-      Swal.fire('Reported!', 'This product has been reported.', 'success');
+      fetch(`http://localhost:5000/products/${id}/report`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: user.email, reason: "Inappropriate content" }),
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire('Reported!', 'This product has been reported.', 'success');
+      })
+      .catch((error) => Swal.fire('Error', error.message, 'error'));
     }
   };
 
@@ -82,7 +93,6 @@ const ProductDetails = () => {
             <Reviews reviews={product.reviews || []} />
           </div>
           <div className="post-review-section">
-            {/* <h2 className="text-2xl font-bold mb-4">Post a Review</h2> */}
             <PostReview productId={product._id} />
           </div>
         </>
