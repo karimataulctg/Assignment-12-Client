@@ -22,6 +22,9 @@ import AllProducts from './homePage/AllProducts.jsx';
 import UpdateProduct from './pages/UpdateProduct.jsx';
 import Contact from './components/Contact.jsx';
 import AllUsers from './pages/AllUsers.jsx';
+import ProductReviewQueue from './pages/ProductReviewQueue.jsx';
+import ReportedContents from './pages/ReportedContents.jsx';
+import AdminStatistics from './pages/AdminStatistics.jsx';
 
 const router = createBrowserRouter([
   {
@@ -62,8 +65,20 @@ const router = createBrowserRouter([
         element: <Profile></Profile>
       },    
       {
+        path: 'adminStatistics',
+        element: <AdminStatistics></AdminStatistics>
+      },
+      {
         path: 'allUsers',
         element: <AllUsers></AllUsers>
+      },
+      {
+        path: 'productReview',
+        element: <ProductReviewQueue></ProductReviewQueue>
+      },
+      {
+        path: 'reportedContent',
+        element: <ReportedContents></ReportedContents>
       },
       {
         path: 'contact',

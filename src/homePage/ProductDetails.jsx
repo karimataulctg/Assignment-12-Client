@@ -23,9 +23,9 @@ const ProductDetails = () => {
       fetch(`https://product-hunt-server-two.vercel.app/products/${id}/upvote`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: user.email })
+        body: JSON.stringify({ email: user.email }),
       })
       .then((res) => res.json())
       .then((data) => {
