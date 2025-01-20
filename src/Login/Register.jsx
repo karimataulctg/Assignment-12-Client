@@ -53,7 +53,7 @@ const Register = () => {
         };
 
         // Send user data to MongoDB
-        return fetch("https://visa-navigator-server-side-two.vercel.app/users", {
+        return fetch("http://localhost:5000/users", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newUser),

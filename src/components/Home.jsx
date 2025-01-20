@@ -3,6 +3,8 @@ import Carousel from './Carousel';
 import FeaturedProducts from '../homePage/FeaturedProducts';
 import TrendingProducts from '../homePage/TrendingProducts';
 import Banner from './Banner';
+import AboutUs from './AboutUs';
+import FAQ from './FAQ';
 
 
 const Home = () => {
@@ -12,6 +14,8 @@ const Home = () => {
             <Banner></Banner>
             <FeaturedProducts></FeaturedProducts>
             <TrendingProducts></TrendingProducts>
+            <AboutUs></AboutUs>
+            <FAQ></FAQ>
             
             
             

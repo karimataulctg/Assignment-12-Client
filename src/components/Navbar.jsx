@@ -81,6 +81,16 @@ const Navbar = () => {
               Products
             </button>
           </li>
+          <li>
+            <button
+              className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
+              onClick={() => {
+                  navigate("/contact");
+              }}
+            >
+             Contact
+            </button>
+          </li>
           
         </ul>
       </div>
@@ -99,7 +109,7 @@ const Navbar = () => {
               <span className="block mr-1 ">{user.displayName || user.email}</span>
               <button 
               onClick={() => {
-                navigate("/dashboard");
+                navigate("/dashboard/myProducts");
               }
             }
               className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2 mr-1">Dashboard</button>
@@ -155,6 +165,15 @@ const Navbar = () => {
                 Products
               </Link>
             </li>
+            <li>
+              <Link
+                to="/contact"
+                className="text-white hover:text-blue-400 py-2"
+                onClick={toggleMenu}
+              >
+                Contact
+              </Link>
+            </li>
            
   
           </ul>
@@ -169,7 +188,7 @@ const Navbar = () => {
                 <span className="mr-2">{user.displayName || user.email}</span>
                 <button 
               onClick={() => {
-                navigate("/dashboard");
+                navigate("/dashboard/myProducts");
               }
             }
               className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2 mr-1">Dashboard</button>

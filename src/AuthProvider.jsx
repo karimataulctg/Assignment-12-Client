@@ -26,6 +26,9 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  // localStorage.setItem("user", JSON.stringify(user));
+
+
   const updateUserProfile = async (name, photoURL) => {
     if (auth.currentUser) {
       await updateProfile(auth.currentUser, {
@@ -75,6 +78,7 @@ const AuthProvider = ({ children }) => {
         axios.post('http://localhost:5000/jwt', user, {
           withCredentials: true,
         })
+        
        
         .then(res => {console.log(res.data);
           setLoading(false); 
