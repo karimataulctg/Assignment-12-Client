@@ -24,7 +24,7 @@ const MyProducts = () => {
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
-          // Filter products where product.owner.email matches logged-in user's email
+          // Filter products owned by the logged-in user
           const userProducts = data.filter((product) => product.owner?.email === user.email);
           setProducts(userProducts);
         } else {
@@ -64,26 +64,6 @@ const MyProducts = () => {
       );
   };
 
-  const handleStatusChange = (productId, status) => {
-    fetch(`http://localhost:5000/products/${productId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({ status }),
-      credentials: 'include',
-    })
-      .then((res) => res.json())
-      .then(() => {
-        Swal.fire('Updated', `Product status updated to ${status}.`, 'success');
-        setProducts(products.map((product) => (product._id === productId ? { ...product, status } : product)));
-      })
-      .catch((error) =>
-        Swal.fire('Error', error.message, 'error')
-      );
-  };
-
   return (
     <div className="my-products-page min-h-screen flex flex-col items-center bg-gray-100 p-6">
       <h1 className="text-3xl font-bold mb-6">My Products</h1>
@@ -110,12 +90,6 @@ const MyProducts = () => {
                     </Link>
                     <button onClick={() => handleDelete(product._id)} className="btn btn-sm btn-danger">
                       Delete
-                    </button>
-                    <button onClick={() => handleStatusChange(product._id, 'Accepted')} className="btn btn-sm btn-success">
-                      Accept
-                    </button>
-                    <button onClick={() => handleStatusChange(product._id, 'Rejected')} className="btn btn-sm btn-warning">
-                      Reject
                     </button>
                   </td>
                 </tr>
