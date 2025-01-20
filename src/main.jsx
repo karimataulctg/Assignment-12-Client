@@ -20,8 +20,6 @@ import AddProduct from './pages/AddProduct.jsx';
 import ProductDetails from './homePage/ProductDetails.jsx';
 import AllProducts from './homePage/AllProducts.jsx';
 import UpdateProduct from './pages/UpdateProduct.jsx';
-import AdminDashboard from './pages/AdminDashboard .jsx';
-import ModeratorDashboard from './pages/ModeratorDashboard .jsx';
 import Contact from './components/Contact.jsx';
 import AllUsers from './pages/AllUsers.jsx';
 
@@ -66,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: 'allUsers',
         element: <AllUsers></AllUsers>
+      },
+      {
+        path: 'contact',
+        element: <Contact></Contact>
       }
     ]
   }
