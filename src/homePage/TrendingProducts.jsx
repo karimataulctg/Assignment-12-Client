@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import useTrendingProducts from "../hooks/useTrendingProducts";
 import { AuthContext } from "../AuthProvider";
-import { FaThumbsUp } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { GiSelfLove } from "react-icons/gi";
 
 const TrendingProducts = () => {
   const { data: products, isLoading, error, refetch } = useTrendingProducts();
@@ -84,7 +84,7 @@ const TrendingProducts = () => {
                   disabled={product.owner.email === user?.email}
                   className="btn btn-primary w-full flex items-center justify-center"
                 >
-                  <FaThumbsUp className="mr-2" />
+                  <GiSelfLove className="mr-2" />
                   {product.votes} Votes
                 </button>
               </div>
