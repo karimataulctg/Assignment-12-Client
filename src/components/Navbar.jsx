@@ -109,7 +109,7 @@ const Navbar = () => {
               <span className="block mr-1 ">{user.displayName || user.email}</span>
               <button 
               onClick={() => {
-                navigate("/dashboard/myProducts");
+                navigate("/dashboard/adminStatistics");
               }
             }
               className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2 mr-1">Dashboard</button>
