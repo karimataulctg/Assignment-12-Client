@@ -62,15 +62,7 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile></Profile>
-      },
-      {
-        path: 'admin',
-        element: <AdminDashboard></AdminDashboard>
-      },
-      {
-        path: 'moderator',
-        element: <ModeratorDashboard></ModeratorDashboard>
-      },
+      },    
       {
         path: 'allUsers',
         element: <AllUsers></AllUsers>

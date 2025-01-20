@@ -45,16 +45,6 @@ const Dashboard = () => {
                         My Profile</NavLink>
                     </li>
                     <li>
-                        <NavLink to={"/dashboard/admin"}>
-                        <FaUsers></FaUsers>
-                        Admin</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to={"/dashboard/moderator"}>
-                        <FaUsers></FaUsers>
-                        Moderator</NavLink>
-                    </li>
-                    <li>
                         <NavLink to={"/dashboard/allUsers"}>
                         <FaUsers></FaUsers>
                         All Users</NavLink>
