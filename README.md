@@ -3,7 +3,7 @@
 Welcome to Product Hunt, a platform where you can discover and share innovative products. Whether you are a product creator or a consumer, Product Hunt helps you connect with the latest and greatest products.
 
 ## Live Site URL
-Visit our live site at [Product Hunt](http://your-live-site-url.com)
+Visit our live site at [https://product-hunt-a156b.web.app/](https://product-hunt-a156b.web.app/)
 
 ## Features
 
