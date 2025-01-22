@@ -25,7 +25,7 @@ const TrendingProducts = () => {
 
     try {
       const response = await fetch(
-        `https://product-hunt-server-two.vercel.app/products/${product._id}/upvote`,
+        `http://localhost:5000/products/${product._id}/upvote`,
         {
           method: "POST",
           headers: {

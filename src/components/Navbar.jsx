@@ -3,10 +3,12 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../AuthProvider";
-import logo from '../assets/Logo.png'
+import logo from "../assets/Logo.png";
+import useAdmin from "../hooks/useAdmin";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [isAdmin] = useAdmin();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, signOutUser } = useContext(AuthContext);
@@ -75,7 +77,7 @@ const Navbar = () => {
             <button
               className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
               onClick={() => {
-                  navigate("/allProducts");
+                navigate("/allProducts");
               }}
             >
               Products
@@ -85,13 +87,12 @@ const Navbar = () => {
             <button
               className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
               onClick={() => {
-                  navigate("/contact");
+                navigate("/contact");
               }}
             >
-             Contact
+              Contact
             </button>
           </li>
-          
         </ul>
       </div>
       {/* Navbar End */}
@@ -106,13 +107,21 @@ const Navbar = () => {
               className="w-10 h-10 rounded-full border-2 border-gray-200 cursor-pointer"
             />
             <div className="hidden group-hover:flex items-center absolute top-8 right-0 bg-slate-500 z-10 text-white p-2 rounded shadow-lg w-80">
-              <span className="block mr-1 ">{user.displayName || user.email}</span>
-              <button 
-              onClick={() => {
-                navigate("/dashboard/adminStatistics");
-              }
-            }
-              className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2 mr-1">Dashboard</button>
+              <span className="block mr-1 ">
+                {user.displayName || user.email}
+              </span>
+              <button
+                onClick={() => {
+                  if (isAdmin) {
+                    navigate("/dashboard/adminStatistics");
+                  } else {
+                    navigate("/dashboard/myProducts");
+                  }
+                }}
+                className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2 mr-1"
+              >
+                Dashboard
+              </button>
               <button
                 className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2"
                 onClick={handleSignOut}
@@ -174,8 +183,6 @@ const Navbar = () => {
                 Contact
               </Link>
             </li>
-           
-  
           </ul>
           <div className="flex items-center mt-4 w-full">
             {user ? (
@@ -186,18 +193,20 @@ const Navbar = () => {
                   className="w-8 h-8 rounded-full mr-2"
                 />
                 <span className="mr-2">{user.displayName || user.email}</span>
-                <button 
-              onClick={() => {
-                navigate("/dashboard/myProducts");
-              }
-            }
-              className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2 mr-1">Dashboard</button>
                 <button
-                className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2"
-                onClick={handleSignOut}
-              >
-                Log Out
-              </button>
+                  onClick={() => {
+                    navigate("/dashboard/myProducts");
+                  }}
+                  className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2 mr-1"
+                >
+                  Dashboard
+                </button>
+                <button
+                  className="bg-blue-800 hover:bg-blue-950 text-white px-4 py-1 btn rounded mt-2"
+                  onClick={handleSignOut}
+                >
+                  Log Out
+                </button>
               </>
             ) : (
               <div className="flex flex-col">

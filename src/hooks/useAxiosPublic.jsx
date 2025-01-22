@@ -3,7 +3,7 @@ import axios, { Axios } from 'axios';
 
 const useAxiosPublic = () => {
     const axiosPublic = axios.create({
-        baseURL: 'http://localhost:5000'
+        baseURL: 'http://localhost:5000/'
     })
     return axiosPublic;
 };

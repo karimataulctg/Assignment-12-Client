@@ -25,6 +25,8 @@ import AllUsers from './pages/AllUsers.jsx';
 import ProductReviewQueue from './pages/ProductReviewQueue.jsx';
 import ReportedContents from './pages/ReportedContents.jsx';
 import AdminStatistics from './pages/AdminStatistics.jsx';
+import AddCouponForm from './pages/AddCouponForm.jsx';
+import ManageCoupons from './pages/ManageCoupons .jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,16 +34,16 @@ const router = createBrowserRouter([
     element: <MainLayout></MainLayout>,
     children: [
       { path: "/", element: <Home></Home> },
-      { path: "login", element: <Login></Login> },
-      { path: "register", element: <Register></Register> },
+      { path: "/login", element: <Login></Login> },
+      { path: "/register", element: <Register></Register> },
       {path: "/productDetails/:id", element: <ProductDetails></ProductDetails>},
-      {path: 'allProducts', element: <AllProducts></AllProducts> },
+      {path: '/allProducts', element: <AllProducts></AllProducts> },
       {
         path: '/updateProduct/:id',
         element: <UpdateProduct></UpdateProduct>
       },
       {
-        path: 'contact',
+        path: '/contact',
         element: <Contact></Contact>
       },
       { path: "*", element: <PageNotFound></PageNotFound> },
@@ -67,6 +69,14 @@ const router = createBrowserRouter([
       {
         path: 'adminStatistics',
         element: <AdminStatistics></AdminStatistics>
+      },
+      {
+        path: 'addCoupons',
+        element: <AddCouponForm></AddCouponForm>
+      },
+      {
+        path: 'manageCoupons',
+        element: <ManageCoupons></ManageCoupons>
       },
       {
         path: 'allUsers',

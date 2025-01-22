@@ -5,16 +5,15 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchUsers = async ({ queryKey }) => {
-    const axiosSecure = queryKey[1];
-    try {
-      const res = await axiosSecure.get("/users");
-      return res.data;
-    } catch (error) {
-      console.error("Error fetching users:", error);
-      throw new Error("Failed to fetch users");
-    }
-  };
-  
+  const axiosSecure = queryKey[1];
+  try {
+    const res = await axiosSecure.get("/users");
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw new Error("Failed to fetch users");
+  }
+};
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -24,19 +23,23 @@ const AllUsers = () => {
     queryFn: fetchUsers
   });
 
-  const handleMakeAdmin = (user) => {
-    axiosSecure.patch(`/users/admin/${user._id}`)
+  const handleMakeModerator = (user) => {
+    axiosSecure.patch(`/users/moderator/${user._id}`)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           refetch();
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: `${user.name} is an Admin Now!`,
+            title: `${user.name} is a Moderator Now!`,
             showConfirmButton: false,
             timer: 1500,
           });
         }
+      })
+      .catch((error) => {
+        Swal.fire('Error', 'Failed to make moderator', 'error');
+        console.error('Error making moderator:', error);
       });
   };
 
@@ -51,24 +54,27 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/users/${user._id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            refetch();
-            Swal.fire({
-              title: "Deleted!",
-              text: "The user has been deleted.",
-              icon: "success",
-            });
-          }
-        });
+        axiosSecure.delete(`/users/${user._id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Deleted!",
+                text: "The user has been deleted.",
+                icon: "success",
+              });
+            }
+          })
+          .catch((error) => {
+            Swal.fire('Error', 'Failed to delete user', 'error');
+            console.error('Error deleting user:', error);
+          });
       }
     });
   };
 
   if (isLoading) return <span className="loading loading-dots loading-lg"></span>;
   if (isError) return <p>Error loading users. Please try again later.</p>;
-
-  console.log("Axios Secure Instance:", axiosSecure);
 
   return (
     <div>
@@ -94,11 +100,11 @@ const AllUsers = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                  {user.role === "admin" ? (
-                    "Admin"
+                  {user.role === "moderator" ? (
+                    "Moderator"
                   ) : (
                     <button
-                      onClick={() => handleMakeAdmin(user)}
+                      onClick={() => handleMakeModerator(user)}
                       className="btn btn-lg bg-orange-500"
                     >
                       <FaUsers className="text-white text-2xl"></FaUsers>

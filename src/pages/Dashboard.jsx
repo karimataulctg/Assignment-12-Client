@@ -25,7 +25,32 @@ const Dashboard = () => {
       <div className="w-64 text-white min-h-screen bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800">
         <ul className="menu">
           {isAdmin ? (
-            <></>
+            <>
+            <li>
+                <NavLink to={"/dashboard/adminStatistics"}>
+                  <FaUsers></FaUsers>
+                  Admin Statistics
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/addCoupons"}>
+                <FaBook></FaBook>
+                  Add Coupons
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/manageCoupons"}>
+                <FaBook></FaBook>
+                  Manage Coupons
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/allUsers"}>
+                  <FaUsers></FaUsers>
+                  Create Moderator
+                </NavLink>
+              </li>
+            </>
           ) : (
             <>
               <li>
@@ -46,18 +71,8 @@ const Dashboard = () => {
                   My Profile
                 </NavLink>
               </li>
-              <li>
-                <NavLink to={"/dashboard/adminStatistics"}>
-                  <FaUsers></FaUsers>
-                  Admin Statistics
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to={"/dashboard/allUsers"}>
-                  <FaUsers></FaUsers>
-                  All Users
-                </NavLink>
-              </li>
+             
+           
               <li>
                 <NavLink to={"/dashboard/productReview"}>
                 <FaBook></FaBook>

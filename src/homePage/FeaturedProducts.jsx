@@ -7,7 +7,7 @@ import { GiSelfLove } from "react-icons/gi";
 import Swal from "sweetalert2";
 
 const fetchProducts = async () => {
-  const { data } = await axios.get('https://product-hunt-server-two.vercel.app/products');
+  const { data } = await axios.get('http://localhost:5000/products');
   return data.slice(-8).reverse();
 };
 
@@ -27,7 +27,7 @@ const FeaturedProducts = () => {
     }
 
     axios
-      .post(`https://product-hunt-server-two.vercel.app/products/${product._id}/upvote`, {
+      .post(`http://localhost:5000/products/${product._id}/upvote`, {
         email: user.email,
       })
       .then((response) => {
@@ -53,7 +53,7 @@ const FeaturedProducts = () => {
 
   return (
     <>
-      <h2 className="text-center text-2xl font-bold my-6">Featured Products</h2>
+      <h2 className="text-center text-2xl font-bold mt-4 mb-2">Featured Products</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
         {products.length > 0 ? (
           products.map((product) => (

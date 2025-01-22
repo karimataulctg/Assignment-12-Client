@@ -8,7 +8,7 @@ const AdminStatistics = () => {
 
   useEffect(() => {
     // Fetch statistics data
-    axios.get('https://product-hunt-server-two.vercel.app/admin/statistics')
+    axios.get('http://localhost:5000/admin/statistics')
       .then((response) => {
         setData(response.data);
       })

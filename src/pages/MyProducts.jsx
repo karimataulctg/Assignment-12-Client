@@ -15,7 +15,7 @@ const MyProducts = () => {
     }
 
     // Fetch all products
-    fetch(`https://product-hunt-server-two.vercel.app/products`, {
+    fetch(`http://localhost:5000/products`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -47,7 +47,7 @@ const MyProducts = () => {
   }, [user, navigate]);
 
   const handleDelete = (productId) => {
-    fetch(`https://product-hunt-server-two.vercel.app/products/${productId}`, {
+    fetch(`http://localhost:5000/products/${productId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

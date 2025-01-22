@@ -1,23 +1,42 @@
-import { useContext } from 'react';
-import { AuthContext } from '../AuthProvider';
-import Swal from 'sweetalert2';
+import { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../AuthProvider";
+import Swal from "sweetalert2";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
+  const [subscriptionStatus, setSubscriptionStatus] = useState(user?.subscriptionStatus || "");
+
+  useEffect(() => {
+    setSubscriptionStatus(user?.subscriptionStatus || "");
+  }, [user]); // Update when user changes
+
   const subscriptionAmount = "20 USD"; // This can be dynamic based on your logic
 
   const handleSubscribe = () => {
     Swal.fire({
-      title: 'Subscribe',
+      title: "Subscribe",
       text: `Do you want to subscribe for ${subscriptionAmount}?`,
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes, subscribe',
-      cancelButtonText: 'No, cancel'
+      confirmButtonText: "Yes, subscribe",
+      cancelButtonText: "No, cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Redirect to payment page or show modal
-        Swal.fire('Subscribed!', 'You have been subscribed.', 'success');
+        fetch(`http://localhost:5000/users/subscribe/${user._id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.message === "User subscription status updated successfully") {
+              Swal.fire("Subscribed!", "You have been subscribed.", "success");
+              setSubscriptionStatus("verified"); // ✅ Update state to trigger re-render
+            }
+          })
+          .catch((error) => {
+            console.error("Subscription error:", error);
+            Swal.fire("Error!", "Subscription failed. Try again.", "error");
+          });
       }
     });
   };
@@ -39,8 +58,12 @@ const Profile = () => {
             )}
             <p className="text-lg font-semibold">Name: {user.displayName}</p>
             <p className="text-lg font-semibold mb-4">Email: {user.email}</p>
-            {user.subscriptionStatus !== 'subscribed' ? (
-              <button onClick={handleSubscribe} className="btn btn-primary w-full mb-2">
+            
+            {subscriptionStatus !== "verified" ? (
+              <button
+                onClick={handleSubscribe}
+                className="btn btn-primary w-full mb-2"
+              >
                 Subscribe {subscriptionAmount}
               </button>
             ) : (
