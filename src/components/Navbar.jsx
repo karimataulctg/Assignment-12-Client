@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../AuthProvider";
 import logo from "../assets/Logo.png";
 import useAdmin from "../hooks/useAdmin";
+import { Link as ScrollLink } from "react-scroll";
+import ThemeToggle from "../ThemeToggle ";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -73,6 +75,7 @@ const Navbar = () => {
               Home
             </Link>
           </li>
+         
           <li>
             <button
               className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
@@ -82,6 +85,22 @@ const Navbar = () => {
             >
               Products
             </button>
+          </li>
+          <li>
+            <Link
+              to="/aboutUs"
+              className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
+            >
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/faq"
+              className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
+            >
+              FAQ
+            </Link>
           </li>
           <li>
             <button
@@ -94,6 +113,7 @@ const Navbar = () => {
             </button>
           </li>
         </ul>
+        <ThemeToggle></ThemeToggle>
       </div>
       {/* Navbar End */}
       <div className="navbar-end hidden lg:flex items-center space-x-4">
@@ -181,6 +201,14 @@ const Navbar = () => {
                 onClick={toggleMenu}
               >
                 Contact
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/faq"
+                className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
+              >
+                FAQ
               </Link>
             </li>
           </ul>

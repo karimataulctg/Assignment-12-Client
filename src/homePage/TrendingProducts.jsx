@@ -51,7 +51,7 @@ const TrendingProducts = () => {
   return (
     <div className="trending-products-section p-6">
       <h2 className="text-center text-2xl font-bold mb-6">Trending Products</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {products && products.length > 0 ? (
           products.map((product) => (
             <div
@@ -94,14 +94,14 @@ const TrendingProducts = () => {
           <p>No trending products available.</p>
         )}
       </div>
-      <div className="mt-6 text-center">
+      {/* <div className="mt-6 text-center">
         <button
           onClick={() => navigate("/allProducts")}
           className="btn btn-secondary"
         >
           Show All Products
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

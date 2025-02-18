@@ -27,6 +27,10 @@ import ReportedContents from './pages/ReportedContents.jsx';
 import AdminStatistics from './pages/AdminStatistics.jsx';
 import AddCouponForm from './pages/AddCouponForm.jsx';
 import ManageCoupons from './pages/ManageCoupons .jsx';
+import AboutUs from './components/AboutUs.jsx';
+import FAQ from './components/FAQ.jsx';
+// import ThemeToggle from './ThemeToggle .jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -41,6 +45,14 @@ const router = createBrowserRouter([
       {
         path: '/updateProduct/:id',
         element: <UpdateProduct></UpdateProduct>
+      },
+      {
+        path: '/aboutUs',
+        element: <AboutUs></AboutUs>
+      },
+      {
+      path: '/faq',
+      element: <FAQ></FAQ>
       },
       {
         path: '/contact',
@@ -94,6 +106,7 @@ const router = createBrowserRouter([
         path: 'contact',
         element: <Contact></Contact>
       }
+    
     ]
   }
 ]);
@@ -106,6 +119,7 @@ createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <div className="max-w-7xl mx-auto">
+          {/* <ThemeToggle /> Add ThemeToggle here */}
           <RouterProvider router={router} />
         </div>
       </QueryClientProvider>
