@@ -9,6 +9,23 @@
     align-items: center;
     justify-content: center;
   }
+
+  /* styles.css */
+.light {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+.dark {
+  --background-color: #333333;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
   
   /* Remove shake styles if they were added before
   // .shake-on-scroll {

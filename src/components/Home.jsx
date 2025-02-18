@@ -11,7 +11,7 @@ import MembershipForm from '../homePage/MembershipForm';
 const Home = () => {
     return (
         <div>
-            
+          
             <Banner></Banner>
             <FeaturedProducts></FeaturedProducts>
             <TrendingProducts></TrendingProducts>
