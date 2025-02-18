@@ -10,15 +10,25 @@
     justify-content: center;
   }
 
-  /* styles.css */
-.light {
+ /* styles.css */
+[data-theme="light"] {
   --background-color: #ffffff;
   --text-color: #000000;
+  --button-background: #f0f0f0;
+  --button-text: #000000;
+  --button-inactive: #ffffff;
+  --card-background: #ffffff;
+  --card-border: #cccccc;
 }
 
-.dark {
-  --background-color: #333333;
+[data-theme="dark"] {
+  --background-color: #252525;
   --text-color: #ffffff;
+  --button-background: #444444;
+  --button-text: #ffffff;
+  --button-inactive: #ffffff;
+  --card-background: #333333;
+  --card-border: #444444;
 }
 
 body {
@@ -26,13 +36,20 @@ body {
   color: var(--text-color);
 }
 
-  
-  /* Remove shake styles if they were added before
-  // .shake-on-scroll {
-  //   animation: none;
-  // }
-  
-  // .shake-on-scroll.shake {
-  //   animation: shake 0.5s linear;
-  // }
-   */
+button {
+  background-color: var(--button-background);
+  color: var(--button-text);
+  border: 1px solid var(--card-border);
+}
+
+button:disabled {
+  background-color: var(--button-inactive);
+  color: var(--text-color);
+}
+
+.card {
+  background-color: var(--card-background);
+  border: 1px solid var(--card-border);
+  padding: 16px;
+  border-radius: 8px;
+}

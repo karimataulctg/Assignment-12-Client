@@ -26,7 +26,7 @@ const ThemeToggle = () => {
     <div className="w-11/12 mx-auto flex justify-end">
       <input 
         type="checkbox" 
-        className="toggle toggle-lg bg-sunflower-yellow" 
+        className="toggle toggle-lg bg-slate-400" 
         checked={isDarkMode} 
         onChange={toggleTheme} 
       />

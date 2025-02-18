@@ -59,7 +59,7 @@ const FeaturedProducts = () => {
           products.map((product) => (
             <div
               key={product._id}
-              className="card bg-white shadow-md rounded-lg overflow-hidden"
+              className="card  shadow-md rounded-lg overflow-hidden"
             >
               <img
                 src={product.image}

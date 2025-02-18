@@ -30,10 +30,10 @@ const NewArrivalsBestSellers = () => {
         {products
           .filter((product) => product.featured) // Show only featured products
           .map((product) => (
-            <div key={product._id} className="bg-white p-4 shadow-lg rounded-lg">
-              <img src={product.image} alt={product.name} className="w-full h-40 object-cover mb-3" />
+            <div key={product._id} className="card p-4 shadow-lg rounded-lg">
+              <img src={product.image} alt={product.name} className="w-full h-40 rounded-t-lg object-cover mb-3" />
               <h3 className="text-lg font-semibold">{product.name}</h3>
-              <p className="text-gray-600">{product.description.slice(0, 50)}...</p>
+              <p className="text-gray-300">{product.description.slice(0, 50)}...</p>
               <a
                 href={product.externalLinks}
                 target="_blank"

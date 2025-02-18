@@ -56,12 +56,12 @@ const TrendingProducts = () => {
           products.map((product) => (
             <div
               key={product._id}
-              className="card bg-white shadow-md rounded-lg overflow-hidden"
+              className="card shadow-md rounded-lg overflow-hidden"
             >
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-48 object-cover"
+                className="w-full h-48 rounded-t-xl object-cover"
               />
               <div className="p-4">
                 <h3 className="text-xl font-bold mb-2">
