@@ -31,7 +31,7 @@ const AdminStatistics = () => {
   };
 
   return (
-    <div className="admin-statistics-page min-h-screen p-6 bg-gray-100">
+    <div className="admin-statistics-page min-h-screen p-6">
       <h1 className="text-3xl font-bold mb-6 text-center">Admin Statistics</h1>
       <div className="flex justify-center">
         <Pie data={chartData} />

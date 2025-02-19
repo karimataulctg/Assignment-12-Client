@@ -57,12 +57,12 @@ const ManageCoupons = () => {
   };
 
   return (
-    <div className="manage-coupons-page min-h-screen p-6 bg-gray-100">
+    <div className="manage-coupons-page min-h-screen p-6 ">
       <h1 className="text-3xl font-bold mb-6">Manage Coupons</h1>
       
       <AddCouponForm onCouponAdded={handleCouponAdded} />
 
-      <div className="bg-white p-4 rounded shadow">
+      <div className="card p-4 rounded shadow">
         <h2 className="text-xl font-semibold mb-4">Coupon List</h2>
         <ul>
           {coupons.map((coupon) => (

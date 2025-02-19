@@ -34,7 +34,7 @@ const AddCouponForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="add-coupon-form space-y-4 p-6 shadow-md rounded-lg w-full max-w-xl mx-auto">
+    <form onSubmit={handleSubmit} className="card add-coupon-form space-y-4 p-6 shadow-md rounded-lg w-full max-w-xl mx-auto my-6">
       <h2 className="text-2xl font-bold mb-4">Add Coupon</h2>
       <div className="form-control">
         <label className="label">Coupon Code</label>

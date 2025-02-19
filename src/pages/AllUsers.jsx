@@ -78,11 +78,11 @@ const AllUsers = () => {
 
   return (
     <div>
-      <div className="flex justify-evenly my-4">
+      <div className=" flex justify-evenly my-4">
         <h2 className="text-3xl">All Users</h2>
         <h2 className="text-3xl">Total Users: {users.length}</h2>
       </div>
-      <div className="overflow-x-auto">
+      <div className="card overflow-x-auto">
         <table className="table table-zebra w-full">
           <thead>
             <tr>
@@ -107,7 +107,7 @@ const AllUsers = () => {
                       onClick={() => handleMakeModerator(user)}
                       className="btn btn-lg bg-orange-500"
                     >
-                      <FaUsers className="text-white text-2xl"></FaUsers>
+                      <FaUsers className=" text-2xl"></FaUsers>
                     </button>
                   )}
                 </td>
