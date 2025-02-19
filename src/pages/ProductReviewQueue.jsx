@@ -67,12 +67,12 @@ const ProductReviewQueue = () => {
   };
 
   return (
-    <div className="product-review-queue min-h-screen p-6 bg-gray-100">
+    <div className="product-review-queue min-h-screen p-6 ">
       <h1 className="text-3xl font-bold mb-6 text-center">Product Review Queue</h1>
-      <div className="overflow-x-auto">
-        <table className="table-auto w-full bg-white shadow-md rounded-lg">
+      <div className="card overflow-x-auto">
+        <table className="table-auto w-full shadow-md rounded-lg">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="">
               <th className="px-4 py-2">Product Name</th>
               <th className="px-4 py-2">Actions</th>
             </tr>

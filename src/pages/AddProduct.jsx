@@ -45,8 +45,8 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="add-product-page min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="card w-full max-w-3xl p-6 bg-white shadow-lg">
+    <div className="add-product-page min-h-screen flex items-center justify-center">
+      <div className="card w-full max-w-3xl p-6  shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Add Product</h1>
         {user ? (
           <form onSubmit={handleSubmit} ref={formRef} className="space-y-4">

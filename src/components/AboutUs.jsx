@@ -3,7 +3,7 @@ import HuntImage from '../assets/HuntTeam.webp';
 
 const AboutUs = () => {
   return (
-    <div className="about-us-page flex flex-col items-center justify-center  p-6">
+    <div className="card about-us-page flex flex-col items-center justify-center  p-6">
       <div className=" p-8 rounded-lg shadow-md max-w-full w-full text-center">
         <h1 className="text-3xl font-bold mb-6 ">About Us</h1>
         <p className=" mb-4">

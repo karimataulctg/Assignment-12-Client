@@ -65,11 +65,11 @@ const MyProducts = () => {
   };
 
   return (
-    <div className="my-products-page min-h-screen flex flex-col items-center bg-gray-100 p-6">
+    <div className="my-products-page min-h-screen flex flex-col items-center p-6">
       <h1 className="text-3xl font-bold mb-6">My Products</h1>
-      <div className="overflow-x-auto w-full max-w-5xl">
-        <table className="table w-full bg-white rounded-lg shadow-md">
-          <thead className="bg-gray-200">
+      <div className="card overflow-x-auto w-full max-w-5xl">
+        <table className="table w-full rounded-lg shadow-md">
+          <thead className="">
             <tr>
               <th className="py-2 px-4">Product Name</th>
               <th className="py-2 px-4">Votes</th>

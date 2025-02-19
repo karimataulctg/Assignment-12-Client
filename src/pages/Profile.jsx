@@ -42,7 +42,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile-page flex flex-col items-center bg-gray-100 min-h-screen p-6">
+    <div className="profile-page flex flex-col items-center  min-h-screen p-6">
       <div className="card w-full max-w-xl bg-white p-6 rounded-lg shadow-md">
         <h1 className="text-2xl font-bold mb-4">Profile Page</h1>
         {user ? (

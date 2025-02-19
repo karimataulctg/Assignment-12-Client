@@ -3,7 +3,7 @@ import React from 'react';
 const FAQ = () => {
   return (
     <div className="faq-page flex flex-col items-center justify-center  p-6">
-      <div className=" p-8 rounded-lg shadow-md max-w-full w-full">
+      <div className=" card p-8 rounded-lg shadow-md max-w-full w-full">
         <h1 className="text-3xl font-bold mb-6 text-center ">Frequently Asked Questions</h1>
         <div className="mb-4">
           <h2 className="text-xl font-semibold ">Q: What is Product Hut?</h2>
