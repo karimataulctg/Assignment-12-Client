@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../AuthProvider";
 import logo from "../assets/Logo.png";
 import useAdmin from "../hooks/useAdmin";
-import { Link as ScrollLink } from "react-scroll";
 import ThemeToggle from "../ThemeToggle ";
 
 const Navbar = () => {
@@ -55,8 +54,10 @@ const Navbar = () => {
   return (
     <div className="navbar sticky z-10 top-0 opacity-80 bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800 text-white shadow-lg">
       {/* Navbar Start */}
-      <div className="navbar-start flex items-center space-x-2">
+      <div className="navbar-start flex items-center space-x-2 ml-2">
+        <Link to="/">
         <img src={logo} alt="Logo" className="w-10 h-10" />
+        </Link>
         <Link
           to="/"
           className="btn btn-ghost normal-case text-lg sm:text-base lg:text-xl text-white hover:text-blue-400"
@@ -75,16 +76,13 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-         
           <li>
-            <button
+            <Link
+              to="/allProducts"
               className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
-              onClick={() => {
-                navigate("/allProducts");
-              }}
             >
               Products
-            </button>
+            </Link>
           </li>
           <li>
             <Link
@@ -103,20 +101,20 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <button
+            <Link
+              to="/contact"
               className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
-              onClick={() => {
-                navigate("/contact");
-              }}
             >
               Contact
-            </button>
+            </Link>
           </li>
         </ul>
-        <ThemeToggle></ThemeToggle>
+        
       </div>
+      
       {/* Navbar End */}
-      <div className="navbar-end hidden lg:flex items-center space-x-4">
+      <div className="navbar-end hidden lg:flex items-center space-x-2">
+      <ThemeToggle></ThemeToggle>
         {user ? (
           <div className="relative group flex items-center">
             <img
@@ -212,7 +210,9 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
+          <ThemeToggle></ThemeToggle>
           <div className="flex items-center mt-4 w-full">
+            
             {user ? (
               <>
                 <img
