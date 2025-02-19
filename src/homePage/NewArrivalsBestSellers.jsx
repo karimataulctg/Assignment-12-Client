@@ -23,9 +23,9 @@ const NewArrivalsBestSellers = () => {
   }
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-4">
       {/* New Arrivals */}
-      <h2 className="text-3xl font-bold text-center  mb-6">New Arrivals</h2>
+      <h2 className="text-2xl font-bold text-center  mb-6">New Arrivals</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {products
           .filter((product) => product.featured) // Show only featured products

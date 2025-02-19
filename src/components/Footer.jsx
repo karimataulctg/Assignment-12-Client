@@ -6,9 +6,9 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-gray-800 via-blue-700 text-center to-gray-800 text-white py-8">
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap justify-between items-center">
+        <div className="flex  justify-between items-center">
           {/* Address Section */}
-          <div className="w-full sm:w-1/3 mb-6 sm:mb-0">
+          <div className=" w-full sm:w-1/3 mb-6 sm:mb-0">
             <h2 className="text-lg font-semibold mb-2">Address:</h2>
             <p>Patherghata</p>
             <p> Chattogram-4000</p>

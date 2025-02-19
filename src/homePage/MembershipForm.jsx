@@ -41,7 +41,7 @@ const MembershipForm = () => {
   };
 
   return (
-  <div className='my-2 py-8 '>
+  <div className='my-2 py-6 '>
       <form onSubmit={handleSubmit} className="card membership-form w-full py-4 max-w-3xl mx-auto flex flex-col justify-center items-center space-y-4 p-6  shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Purchase Membership</h2>
       <div className="form-control w-full">

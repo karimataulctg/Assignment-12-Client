@@ -32,8 +32,8 @@ const HomePage = () => {
   };
 
   return (
-    <div className="card p-6 flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold mb-6 text-center">Coupon Codes</h1>
+    <div className="card p-4 flex flex-col items-center justify-center">
+      <h1 className="text-2xl font-bold mb-6 text-center">Coupon Codes</h1>
       <div className="w-full max-w-2xl">
         {coupons.length > 0 ? (
           <Slider {...settings}>

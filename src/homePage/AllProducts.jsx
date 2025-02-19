@@ -6,7 +6,8 @@ const AllProducts = () => {
   const [searchInput, setSearchInput] = useState('');
   const [searchTag, setSearchTag] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 6; // ✅ Show 6 products per page
+  const [sortOrder, setSortOrder] = useState('asc'); 
+  const productsPerPage = 6;
 
   const { data: products, isLoading, refetch } = useAllProducts(searchTag);
   const navigate = useNavigate();
@@ -14,19 +15,31 @@ const AllProducts = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchTag(searchInput);
-    setCurrentPage(1); // ✅ Reset to page 1 on search
+    setCurrentPage(1); 
     refetch();
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  // Sorting Logic
+  const sortedProducts = React.useMemo(() => {
+    if (!products) return [];
+    return [...products].sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
+  }, [products, sortOrder]);
 
   // Pagination Logic
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products?.slice(indexOfFirstProduct, indexOfLastProduct) || [];
+  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div className="all-products-page min-h-screen p-6 bg-gray-100">
+    <div className="all-products-page min-h-screen p-6">
       <h1 className="text-3xl font-bold mb-6 text-center">All Products</h1>
 
       {/* Search Bar */}
@@ -41,12 +54,28 @@ const AllProducts = () => {
         <button type="submit" className="btn btn-primary">Search</button>
       </form>
 
+      {/* Sorting Controls */}
+      <div className="mb-6 flex justify-center gap-4">
+        <button
+          className={`btn ${sortOrder === 'asc' ? 'btn-primary' : 'btn-outline'}`}
+          onClick={() => setSortOrder('asc')}
+        >
+          Sort Ascending
+        </button>
+        <button
+          className={`btn ${sortOrder === 'desc' ? 'btn-primary' : 'btn-outline'}`}
+          onClick={() => setSortOrder('desc')}
+        >
+          Sort Descending
+        </button>
+      </div>
+
       {/* Products Grid (3 Cards Per Row) */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {currentProducts.length > 0 ? (
           currentProducts.map((product) => (
-            <div key={product._id} className="card bg-white shadow-md rounded-lg overflow-hidden">
-              <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
+            <div key={product._id} className="card shadow-md rounded-lg overflow-hidden">
+              <img src={product.image} alt={product.name} className="w-full rounded-t-lg h-48 object-cover" />
               <div className="p-4">
                 <h3 className="text-xl font-bold mb-2">{product.name}</h3>
                 <div className="tags mb-4">
@@ -81,7 +110,7 @@ const AllProducts = () => {
         <button
           className="btn btn-outline"
           onClick={() => setCurrentPage((prev) => prev + 1)}
-          disabled={indexOfLastProduct >= products?.length}
+          disabled={indexOfLastProduct >= sortedProducts.length}
         >
           Next
         </button>

@@ -193,6 +193,22 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
+            <Link
+              to="/aboutUs"
+              className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
+            >
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/faq"
+              className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
+            >
+              FAQ
+            </Link>
+          </li>
+            <li>
               <Link
                 to="/contact"
                 className="text-white hover:text-blue-400 py-2"
@@ -201,14 +217,7 @@ const Navbar = () => {
                 Contact
               </Link>
             </li>
-            <li>
-              <Link
-                to="/faq"
-                className="text-white hover:text-blue-400 focus:text-white active:text-white visited:text-white"
-              >
-                FAQ
-              </Link>
-            </li>
+            
           </ul>
           <ThemeToggle></ThemeToggle>
           <div className="flex items-center mt-4 w-full">
