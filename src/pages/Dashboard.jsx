@@ -1,52 +1,62 @@
 import React, { useState } from "react";
 import {
+  FaBars,
+  FaTimes,
   FaEnvelope,
   FaHome,
-  FaList,
-  FaMoneyCheckAlt,
-  FaSearch,
-  FaShoppingCart,
   FaUsers,
-  FaUtensils,
-  FaVoicemail,
+  FaBook,
+  FaAddressBook,
 } from "react-icons/fa";
-import { FaAddressBook, FaBook, FaCalendar } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useCart from "../hooks/useCart";
 
 const Dashboard = () => {
   const [cart] = useCart();
-
   const [isAdmin] = useAdmin();
+  const [isOpen, setIsOpen] = useState(false); // State to toggle menu
 
   return (
     <div className="flex">
-      <div className="w-64 text-white min-h-screen bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800">
+      {/* Hamburger Menu Button (visible only on mobile) */}
+      <button
+        className="md:hidden p-4 text-white bg-gray-800 fixed top-4 left-4 z-50 rounded-lg"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+      </button>
+
+      {/* Sidebar */}
+      <div
+        className={`fixed md:static top-0 left-0 min-h-screen w-64 bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800 text-white p-4 transform ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } md:translate-x-0 transition-transform duration-300 ease-in-out z-40`}
+      >
         <ul className="menu">
           {isAdmin ? (
             <>
-            <li>
+              <li>
                 <NavLink to={"/dashboard/adminStatistics"}>
-                  <FaUsers></FaUsers>
+                  <FaUsers />
                   Admin Statistics
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/dashboard/addCoupons"}>
-                <FaBook></FaBook>
+                  <FaBook />
                   Add Coupons
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/dashboard/manageCoupons"}>
-                <FaBook></FaBook>
+                  <FaBook />
                   Manage Coupons
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/dashboard/allUsers"}>
-                  <FaUsers></FaUsers>
+                  <FaUsers />
                   Create Moderator
                 </NavLink>
               </li>
@@ -55,33 +65,31 @@ const Dashboard = () => {
             <>
               <li>
                 <NavLink to={"/dashboard/addProduct"}>
-                  <FaAddressBook></FaAddressBook>
+                  <FaAddressBook />
                   Add Product
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/dashboard/myProducts"}>
-                  <FaBook></FaBook>
-                  My Products{" "}
+                  <FaBook />
+                  My Products
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/dashboard/profile"}>
-                  <FaUsers></FaUsers>
+                  <FaUsers />
                   My Profile
                 </NavLink>
               </li>
-             
-           
               <li>
                 <NavLink to={"/dashboard/productReview"}>
-                <FaBook></FaBook>
+                  <FaBook />
                   Product Review
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/dashboard/reportedContent"}>
-                <FaBook></FaBook>
+                  <FaBook />
                   Reported Content
                 </NavLink>
               </li>
@@ -91,21 +99,22 @@ const Dashboard = () => {
           <div className="divider"></div>
           <li>
             <NavLink to={"/"}>
-              <FaHome></FaHome>
+              <FaHome />
               Home
             </NavLink>
           </li>
-
           <li>
             <NavLink to={"/dashboard/contact"}>
-              <FaEnvelope></FaEnvelope>
+              <FaEnvelope />
               Contact
             </NavLink>
           </li>
         </ul>
       </div>
+
+      {/* Main Content */}
       <div className="flex-1 p-8">
-        <Outlet></Outlet>
+        <Outlet />
       </div>
     </div>
   );

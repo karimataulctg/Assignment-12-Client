@@ -1,42 +1,57 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useAllProducts from '../hooks/useAllProducts';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import useAllProducts from "../hooks/useAllProducts";
 
 const AllProducts = () => {
-  const [searchInput, setSearchInput] = useState('');
-  const [searchTag, setSearchTag] = useState('');
+  const [searchInput, setSearchInput] = useState("");
+  const [searchTag, setSearchTag] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortOrder, setSortOrder] = useState('asc'); 
+  const [sortOrder, setSortOrder] = useState("asc"); // ✅ Sorting state
   const productsPerPage = 6;
 
   const { data: products, isLoading, refetch } = useAllProducts(searchTag);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log("🔍 Search Tag:", searchTag);
+    console.log("📦 Products:", products);
+  }, [searchTag, products]);
+
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchTag(searchInput);
-    setCurrentPage(1); 
+    setCurrentPage(1);
     refetch();
   };
 
-  // Sorting Logic
-  const sortedProducts = React.useMemo(() => {
-    if (!products) return [];
-    return [...products].sort((a, b) => {
-      if (sortOrder === 'asc') {
-        return a.name.localeCompare(b.name);
-      } else {
-        return b.name.localeCompare(a.name);
-      }
-    });
-  }, [products, sortOrder]);
+  const handleSort = (order) => {
+    setSortOrder(order);
+    setCurrentPage(1);
+  };
+
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+
+  // ✅ Sorting logic before pagination
+  const sortedProducts = [...(products || [])].sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.name.localeCompare(b.name);
+    } else {
+      return b.name.localeCompare(a.name);
+    }
+  });
 
   // Pagination Logic
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-
-  if (isLoading) return <p>Loading...</p>;
+  const currentProducts = sortedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   return (
     <div className="all-products-page min-h-screen p-6">
@@ -51,36 +66,44 @@ const AllProducts = () => {
           onChange={(e) => setSearchInput(e.target.value)}
           className="input input-bordered w-64"
         />
-        <button type="submit" className="btn btn-primary">Search</button>
+        <button type="submit" className="btn btn-primary">
+          Search
+        </button>
       </form>
 
-      {/* Sorting Controls */}
-      <div className="mb-6 flex justify-center gap-4">
-        <button
-          className={`btn ${sortOrder === 'asc' ? 'btn-primary' : 'btn-outline'}`}
-          onClick={() => setSortOrder('asc')}
-        >
-          Sort Ascending
-        </button>
-        <button
-          className={`btn ${sortOrder === 'desc' ? 'btn-primary' : 'btn-outline'}`}
-          onClick={() => setSortOrder('desc')}
-        >
-          Sort Descending
-        </button>
-      </div>
+      {/* Sorting Buttons */}
+      <div className="flex justify-center mb-6">
+  <select
+    className="px-6 py-2 w-64 border rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+    value={sortOrder}
+    onChange={(e) => handleSort(e.target.value)}
+  >
+    <option value="asc">🔼 Ascending</option>
+    <option value="desc">🔽 Descending</option>
+  </select>
+</div>
 
-      {/* Products Grid (3 Cards Per Row) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+
+      {/* Products Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 m-2 gap-6">
         {currentProducts.length > 0 ? (
           currentProducts.map((product) => (
-            <div key={product._id} className="card shadow-md rounded-lg overflow-hidden">
-              <img src={product.image} alt={product.name} className="w-full rounded-t-lg h-48 object-cover" />
+            <div
+              key={product._id}
+              className="card bg-white shadow-md rounded-lg overflow-hidden"
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full rounded-t-lg h-48 object-cover"
+              />
               <div className="p-4">
                 <h3 className="text-xl font-bold mb-2">{product.name}</h3>
                 <div className="tags mb-4">
-                  {product.tags.map((tag) => (
-                    <span key={tag} className="badge badge-secondary mr-2">{tag}</span>
+                  {product.tags?.map((tag) => (
+                    <span key={tag} className="badge badge-secondary mr-2">
+                      {tag}
+                    </span>
                   ))}
                 </div>
                 <button
@@ -93,7 +116,9 @@ const AllProducts = () => {
             </div>
           ))
         ) : (
-          <p className="text-red-500 text-center col-span-3">No products found.</p>
+          <p className="text-red-500 text-center col-span-3">
+            No products found.
+          </p>
         )}
       </div>
 

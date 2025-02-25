@@ -18,7 +18,7 @@
   --button-text: #000000;
   --button-inactive: #ffffff;
   --card-background: #ffffff;
-  --card-border: #cccccc;
+  --card-border: #b6b4b4;
 }
 
 [data-theme="dark"] {
@@ -28,7 +28,7 @@
   --button-text: #ffffff;
   --button-inactive: #ffffff;
   --card-background: #333333;
-  --card-border: #444444;
+  --card-border: #292828;
   --card-text: #ffffff;
 }
 

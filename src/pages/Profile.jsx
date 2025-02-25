@@ -8,9 +8,9 @@ const Profile = () => {
 
   useEffect(() => {
     setSubscriptionStatus(user?.subscriptionStatus || "");
-  }, [user]); // Update when user changes
+  }, [user]);
 
-  const subscriptionAmount = "20 USD"; // This can be dynamic based on your logic
+  const subscriptionAmount = "20 USD"; 
 
   const handleSubscribe = () => {
     Swal.fire({
@@ -22,7 +22,7 @@ const Profile = () => {
       cancelButtonText: "No, cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/subscribe/${user._id}`, {
+        fetch(`https://product-hunt-server-two.vercel.app/users/subscribe/${user._id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
         })
@@ -30,7 +30,7 @@ const Profile = () => {
           .then((data) => {
             if (data.message === "User subscription status updated successfully") {
               Swal.fire("Subscribed!", "You have been subscribed.", "success");
-              setSubscriptionStatus("verified"); // ✅ Update state to trigger re-render
+              setSubscriptionStatus("verified"); 
             }
           })
           .catch((error) => {
@@ -42,36 +42,54 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile-page flex flex-col items-center  min-h-screen p-6">
-      <div className="card w-full max-w-xl bg-white p-6 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold mb-4">Profile Page</h1>
+    <div className="profile-page flex flex-col items-center min-h-screen  p-6">
+      <div className="card w-full max-w-2xl  p-6 rounded-lg shadow-lg">
+        {/* Profile Header */}
+        <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 rounded-lg text-white text-center mb-6">
+          <h1 className="text-3xl font-bold">Profile Page</h1>
+          <p className="text-sm opacity-80">Manage your account and subscription</p>
+        </div>
+
         {user ? (
           <>
-            {user.photoURL ? (
-              <img src={user.photoURL} alt={user.displayName} className="rounded-full w-32 h-32 mx-auto mb-4" />
-            ) : (
-              <div className="rounded-full w-32 h-32 bg-gray-300 flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl font-bold text-gray-600">
+            {/* Profile Image */}
+            <div className="flex flex-col items-center">
+              {user.photoURL ? (
+                <img
+                  src={user.photoURL}
+                  alt={user.displayName}
+                  className="rounded-full w-32 h-32 border-4 border-blue-500 shadow-lg"
+                />
+              ) : (
+                <div className="rounded-full w-32 h-32 bg-gray-300 flex items-center justify-center text-4xl font-bold text-gray-600 border-4 border-gray-400 shadow-lg">
                   {user.displayName.charAt(0).toUpperCase()}
-                </span>
-              </div>
-            )}
-            <p className="text-lg font-semibold">Name: {user.displayName}</p>
-            <p className="text-lg font-semibold mb-4">Email: {user.email}</p>
-            
-            {subscriptionStatus !== "verified" ? (
-              <button
-                onClick={handleSubscribe}
-                className="btn btn-primary w-full mb-2"
-              >
-                Subscribe {subscriptionAmount}
-              </button>
-            ) : (
-              <p className="text-green-500 text-lg font-semibold">Status: Verified</p>
-            )}
+                </div>
+              )}
+
+              {/* User Info */}
+              <h2 className="text-2xl font-semibold mt-4">{user.displayName}</h2>
+              <p className="text-lg">{user.email}</p>
+            </div>
+
+            {/* Subscription Section */}
+            <div className="mt-6 border-2 p-4 rounded-lg shadow-md w-full text-center">
+              {subscriptionStatus !== "verified" ? (
+                <div>
+                  <p className="card text-lg mb-2">Subscribe to unlock premium features!</p>
+                  <button
+                    onClick={handleSubscribe}
+                    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold transition-all shadow-md"
+                  >
+                    Subscribe for {subscriptionAmount}
+                  </button>
+                </div>
+              ) : (
+                <p className="text-green-500 text-lg font-semibold">✅ Subscription Status: Verified</p>
+              )}
+            </div>
           </>
         ) : (
-          <p className="text-center text-lg font-semibold">Loading user information...</p>
+          <p className="text-center text-lg font-semibold text-gray-600">Loading user information...</p>
         )}
       </div>
     </div>

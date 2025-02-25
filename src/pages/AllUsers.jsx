@@ -20,7 +20,7 @@ const AllUsers = () => {
   
   const { data: users = [], refetch, isLoading, isError } = useQuery({
     queryKey: ["users", axiosSecure],
-    queryFn: fetchUsers
+    queryFn: fetchUsers,
   });
 
   const handleMakeModerator = (user) => {
@@ -74,49 +74,49 @@ const AllUsers = () => {
   };
 
   if (isLoading) return <span className="loading loading-dots loading-lg"></span>;
-  if (isError) return <p>Error loading users. Please try again later.</p>;
+  if (isError) return <p className="text-center text-red-500">Error loading users. Please try again later.</p>;
 
   return (
-    <div>
-      <div className=" flex justify-evenly my-4">
-        <h2 className="text-3xl">All Users</h2>
-        <h2 className="text-3xl">Total Users: {users.length}</h2>
+    <div className="p-4">
+      <div className="flex flex-wrap justify-between items-center my-4">
+        <h2 className="text-2xl text-center md:text-3xl font-bold">All Users</h2>
+        <h2 className="text-lg md:text-2xl font-semibold">Total Users: {users.length}</h2>
       </div>
-      <div className="card overflow-x-auto">
-        <table className="table table-zebra w-full">
+      <div className="overflow-x-auto  shadow-md rounded-lg">
+        <table className="w-full table-auto border-collapse">
           <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Action</th>
+            <tr className="bg-gray-400 text-gray-700">
+              <th className="p-2 text-left">#</th>
+              <th className="p-2 text-left">Name</th>
+              <th className="p-2 text-left">Email</th>
+              <th className="p-2 text-left">Role</th>
+              <th className="p-2 text-left">Action</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={user._id}>
-                <th>{index + 1}</th>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
+              <tr key={user._id} className="border-b">
+                <td className="p-2">{index + 1}</td>
+                <td className="p-2">{user.name}</td>
+                <td className="p-2">{user.email}</td>
+                <td className="p-2">
                   {user.role === "moderator" ? (
                     "Moderator"
                   ) : (
                     <button
                       onClick={() => handleMakeModerator(user)}
-                      className="btn btn-lg bg-orange-500"
+                      className="btn btn-sm bg-orange-500 text-white px-3 py-1 rounded-md"
                     >
-                      <FaUsers className=" text-2xl"></FaUsers>
+                      <FaUsers className="text-xl" />
                     </button>
                   )}
                 </td>
-                <td>
+                <td className="p-2">
                   <button
                     onClick={() => handleDeleteUser(user)}
-                    className="btn btn-ghost btn-lg"
+                    className="btn btn-sm bg-red-600 text-white px-3 py-1 rounded-md"
                   >
-                    <FaTrashAlt className="text-red-600"></FaTrashAlt>
+                    <FaTrashAlt className="text-sm" />
                   </button>
                 </td>
               </tr>

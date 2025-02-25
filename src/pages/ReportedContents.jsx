@@ -9,7 +9,7 @@ const ReportedContents = () => {
 
   useEffect(() => {
     // Fetch reported products
-    axios.get('http://localhost:5000/reported-products')
+    axios.get('https://product-hunt-server-two.vercel.app/reported-products')
       .then((response) => {
         setReportedProducts(response.data);
       })
@@ -33,7 +33,7 @@ const ReportedContents = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/products/${productId}`)
+        axios.delete(`https://product-hunt-server-two.vercel.app/${productId}`)
           .then(() => {
             Swal.fire('Deleted!', 'The product has been deleted.', 'success');
             setReportedProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));

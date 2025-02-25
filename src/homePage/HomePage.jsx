@@ -9,7 +9,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/coupons/valid")
+      .get("https://product-hunt-server-two.vercel.app/coupons/valid")
       .then((response) => {
         setCoupons(response.data);
       })
@@ -32,7 +32,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="card p-4 flex flex-col items-center justify-center">
+    <div className="card p-4 flex flex-col items-center justify-center m-6">
       <h1 className="text-2xl font-bold mb-6 text-center">Coupon Codes</h1>
       <div className="w-full max-w-2xl">
         {coupons.length > 0 ? (

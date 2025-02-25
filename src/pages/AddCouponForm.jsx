@@ -18,7 +18,7 @@ const AddCouponForm = () => {
       discountAmount: parseFloat(discountAmount),
     };
 
-    axios.post('http://localhost:5000/coupons', newCoupon)
+    axios.post('https://product-hunt-server-two.vercel.app/coupons', newCoupon)
       .then((response) => {
         Swal.fire('Success', response.data.message, 'success');
         // Reset form fields
@@ -35,7 +35,7 @@ const AddCouponForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="card add-coupon-form space-y-4 p-6 shadow-md rounded-lg w-full max-w-xl mx-auto my-6">
-      <h2 className="text-2xl font-bold mb-4">Add Coupon</h2>
+      <h2 className="text-2xl text-center font-bold mb-4">Add Coupon</h2>
       <div className="form-control">
         <label className="label">Coupon Code</label>
         <input

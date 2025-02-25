@@ -12,7 +12,7 @@ const ManageCoupons = () => {
 
   const fetchCoupons = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/coupons');
+      const response = await axios.get('https://product-hunt-server-two.vercel.app/coupons');
       setCoupons(response.data);
     } catch (error) {
       console.error('Error fetching coupons:', error);
@@ -25,7 +25,7 @@ const ManageCoupons = () => {
 
   const handleEditCoupon = async (couponId, updatedCoupon) => {
     try {
-      await axios.put(`http://localhost:5000/coupons/${couponId}`, updatedCoupon);
+      await axios.put(`https://product-hunt-server-two.vercel.app/coupons/${couponId}`, updatedCoupon);
       Swal.fire('Coupon Updated', 'Your coupon has been updated successfully', 'success');
       fetchCoupons();
     } catch (error) {
@@ -44,7 +44,7 @@ const ManageCoupons = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/coupons/${couponId}`)
+        axios.delete(`https://product-hunt-server-two.vercel.app/coupons/${couponId}`)
           .then(() => {
             Swal.fire('Deleted!', 'The coupon has been deleted.', 'success');
             setCoupons((prevCoupons) => prevCoupons.filter((coupon) => coupon._id !== couponId));
@@ -58,11 +58,11 @@ const ManageCoupons = () => {
 
   return (
     <div className="manage-coupons-page min-h-screen p-6 ">
-      <h1 className="text-3xl font-bold mb-6">Manage Coupons</h1>
+      <h1 className="text-3xl text-center font-bold mb-6">Manage Coupons</h1>
       
       <AddCouponForm onCouponAdded={handleCouponAdded} />
 
-      <div className="card p-4 rounded shadow">
+      <div className="card p-4 rounded shadow-xl">
         <h2 className="text-xl font-semibold mb-4">Coupon List</h2>
         <ul>
           {coupons.map((coupon) => (

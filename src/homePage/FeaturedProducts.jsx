@@ -2,12 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../AuthProvider";
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 import { GiSelfLove } from "react-icons/gi";
 import Swal from "sweetalert2";
 
 const fetchProducts = async () => {
-  const { data } = await axios.get('http://localhost:5000/products');
+  const { data } = await axios.get("https://product-hunt-server-two.vercel.app/products");
   return data.slice(-8).reverse();
 };
 
@@ -15,8 +15,13 @@ const FeaturedProducts = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { data: products, refetch, isLoading, isError } = useQuery({
-    queryKey: 'products',
+  const {
+    data: products,
+    refetch,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: "products",
     queryFn: fetchProducts,
   });
 
@@ -27,7 +32,7 @@ const FeaturedProducts = () => {
     }
 
     axios
-      .post(`http://localhost:5000/products/${product._id}/upvote`, {
+      .post(`https://product-hunt-server-two.vercel.app/products/${product._id}/upvote`, {
         email: user.email,
       })
       .then((response) => {
@@ -39,22 +44,29 @@ const FeaturedProducts = () => {
         }
       })
       .catch((error) => {
-        Swal.fire("Error", error.response?.data?.message || error.message, "error");
+        Swal.fire(
+          "Error",
+          error.response?.data?.message || error.message,
+          "error"
+        );
       });
   };
 
-  if (isLoading) return (
-    <div className="flex justify-center items-center">
-      <span className="loading loading-dots loading-lg"></span>
-    </div>
-  );
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
 
   if (isError) return <p>Error loading products</p>;
 
   return (
     <>
-      <h2 className="text-center text-2xl font-bold mt-4 mb-2">Featured Products</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+      <h2 className="text-center text-2xl font-bold mt-4 mb-2">
+        Featured Products
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 m-6">
         {products.length > 0 ? (
           products.map((product) => (
             <div
@@ -88,7 +100,8 @@ const FeaturedProducts = () => {
                     (product.upvotedBy || []).includes(user?.email) ||
                     product.owner === user?.email
                   }
-                  className="btn btn-primary w-full flex items-center justify-center"
+                  className="btn btn-primary w-full flex items-center justify-center 
+             disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-black"
                 >
                   <GiSelfLove className="mr-2" />
                   {product.votes} Votes

@@ -7,10 +7,15 @@ import { Parallax } from 'react-parallax';
 const Banner = () => {
     const navigate = useNavigate();
     return (
-        <Parallax bgImage={banner} strength={500} className="relative w-full md:h-96 flex items-center justify-center overflow-hidden">
+        <Parallax 
+            bgImage={banner} 
+            strength={500} 
+            className="relative w-full" 
+            style={{ height: 'calc(100vh - 80px)' }}
+        >
             <div className="relative text-center px-2">
-              <h1 className="text-3xl font-bold text-white">Product Hunt</h1>
-              <h1 className="text-1xl font-bold text-slate-300 ">" Where Tech Creators and Enthusiasts Converge"</h1>
+                <h1 className="text-3xl font-bold text-white">Product Hunt</h1>
+                <h1 className="text-1xl font-bold text-slate-300 ">" Where Tech Creators and Enthusiasts Converge"</h1>
                 <h1 className="text-white text-sm md:text-xl lg:text-1xl font-semibold">
                     Welcome to our vibrant tech community where innovation meets inspiration. 
                     Whether you're a creator eager to showcase your latest product, or a tech 

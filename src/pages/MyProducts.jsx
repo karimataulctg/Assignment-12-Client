@@ -15,28 +15,30 @@ const MyProducts = () => {
     }
 
     // Fetch all products
-    fetch(`http://localhost:5000/products`, {
+    fetch(`https://product-hunt-server-two.vercel.app/products`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-      credentials: 'include',
+      credentials: "include",
     })
-      .then((res) => res.json())
+      .then(async (res) => {
+        const text = await res.text(); // Read response as text
+        try {
+          return JSON.parse(text); // Attempt to parse as JSON
+        } catch {
+          throw new Error("Invalid JSON response from server: " + text);
+        }
+      })
       .then((data) => {
         if (Array.isArray(data)) {
-          // Filter products owned by the logged-in user
           const userProducts = data.filter((product) => product.owner?.email === user.email);
           setProducts(userProducts);
         } else {
-          Swal.fire({
-            title: "Error",
-            text: "Failed to fetch products.",
-            icon: "error",
-            confirmButtonText: "OK",
-          });
+          throw new Error("Unexpected response format.");
         }
       })
       .catch((error) => {
+        console.error("Fetch error:", error);
         Swal.fire({
           title: "Error",
           text: `Failed to load products: ${error.message}`,
@@ -44,10 +46,11 @@ const MyProducts = () => {
           confirmButtonText: "OK",
         });
       });
+    
   }, [user, navigate]);
 
   const handleDelete = (productId) => {
-    fetch(`http://localhost:5000/products/${productId}`, {
+    fetch(`https://product-hunt-server-two.vercel.app/${productId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -67,14 +70,16 @@ const MyProducts = () => {
   return (
     <div className="my-products-page min-h-screen flex flex-col items-center p-6">
       <h1 className="text-3xl font-bold mb-6">My Products</h1>
+
+      {/* Table Wrapper with Scroll for Small Screens */}
       <div className="card overflow-x-auto w-full max-w-5xl">
         <table className="table w-full rounded-lg shadow-md">
-          <thead className="">
-            <tr>
-              <th className="py-2 px-4">Product Name</th>
-              <th className="py-2 px-4">Votes</th>
-              <th className="py-2 px-4">Status</th>
-              <th className="py-2 px-4">Actions</th>
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="py-2 px-4 text-left">Product Name</th>
+              <th className="py-2 px-4 text-left">Votes</th>
+              <th className="py-2 px-4 text-left">Status</th>
+              <th className="py-2 px-4 text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -84,11 +89,17 @@ const MyProducts = () => {
                   <td className="py-2 px-4">{product.name}</td>
                   <td className="py-2 px-4">{product.votes}</td>
                   <td className="py-2 px-4">{product.status}</td>
-                  <td className="py-2 px-4 flex space-x-2">
-                    <Link to={`/updateProduct/${product._id}`} className="btn btn-sm btn-primary">
+                  <td className="py-2 px-4 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
+                    <Link
+                      to={`/updateProduct/${product._id}`}
+                      className="btn btn-sm btn-primary text-center"
+                    >
                       Update
                     </Link>
-                    <button onClick={() => handleDelete(product._id)} className="btn btn-sm btn-danger">
+                    <button
+                      onClick={() => handleDelete(product._id)}
+                      className="btn btn-sm btn-danger text-center"
+                    >
                       Delete
                     </button>
                   </td>
@@ -96,7 +107,9 @@ const MyProducts = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="text-center py-2 px-4">No products found</td>
+                <td colSpan="4" className="text-center py-4 px-4">
+                  No products found
+                </td>
               </tr>
             )}
           </tbody>

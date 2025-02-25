@@ -25,7 +25,7 @@ const TrendingProducts = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/products/${product._id}/upvote`,
+        `https://product-hunt-server-two.vercel.app/products/${product._id}/upvote`,
         {
           method: "POST",
           headers: {
@@ -49,7 +49,7 @@ const TrendingProducts = () => {
   };
 
   return (
-    <div className="trending-products-section p-4">
+    <div className="trending-products-section m-6">
       <h2 className="text-center text-2xl font-bold mb-6">Trending Products</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {products && products.length > 0 ? (

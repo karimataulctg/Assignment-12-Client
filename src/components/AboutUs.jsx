@@ -3,8 +3,8 @@ import HuntImage from '../assets/HuntTeam.webp';
 
 const AboutUs = () => {
   return (
-    <div className="card about-us-page flex flex-col items-center justify-center  p-4">
-      <div className=" p-8 rounded-lg shadow-md max-w-full w-full text-center">
+    <div className="card about-us-page flex flex-col items-center justify-center m-6 ">
+      <div className=" p-4 rounded-lg shadow-md max-w-full w-full text-center">
         <h1 className="text-2xl font-bold mb-6 ">About Us</h1>
         <p className=" mb-4">
           Welcome to Product Hut! We are a team of passionate individuals dedicated to bringing you the best products from around the world. Our mission is to connect innovative creators with enthusiastic consumers.

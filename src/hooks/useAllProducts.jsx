@@ -5,8 +5,8 @@ const fetchProducts = async (searchTag) => {
   console.log("📢 Fetching products with tag:", searchTag);
 
   try {
-    const { data } = await axios.get(`http://localhost:5000/products`, {
-      params: searchTag ? { tag: searchTag.trim() } : {}  // Trim whitespace
+    const { data } = await axios.get(`https://product-hunt-server-two.vercel.app/products`, {
+      params: searchTag ? { tag: searchTag.trim() } : {}
     });
 
     console.log("✅ Fetched products:", data);
@@ -16,6 +16,8 @@ const fetchProducts = async (searchTag) => {
     return [];
   }
 };
+
+
 
 const useAllProducts = (searchTag) => {
   return useQuery({

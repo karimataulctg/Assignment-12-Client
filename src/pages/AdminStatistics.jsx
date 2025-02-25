@@ -8,7 +8,7 @@ const AdminStatistics = () => {
 
   useEffect(() => {
     // Fetch statistics data
-    axios.get('http://localhost:5000/admin/statistics')
+    axios.get('https://product-hunt-server-two.vercel.app/admin/statistics')
       .then((response) => {
         setData(response.data);
       })
@@ -31,10 +31,14 @@ const AdminStatistics = () => {
   };
 
   return (
-    <div className="admin-statistics-page min-h-screen p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">Admin Statistics</h1>
-      <div className="flex justify-center">
-        <Pie data={chartData} />
+    <div className="admin-statistics-page">
+      <h1 className="text-3xl font-bold  text-center">Admin Statistics</h1>
+      <div className="flex justify-center items-center h-full">
+        <div className="md:h-screen w-11/12 md:w-6/12"
+        // style={{ height: 'calc(100vh - 20px)' }}
+        >
+          <Pie data={chartData} options={{ maintainAspectRatio: false }} />
+        </div>
       </div>
     </div>
   );

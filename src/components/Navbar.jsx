@@ -52,9 +52,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar sticky z-10 top-0 opacity-80 bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800 text-white shadow-lg">
+    <div className="navbar  sticky z-10 top-0 opacity-80 bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800 text-white shadow-lg">
       {/* Navbar Start */}
-      <div className="navbar-start flex items-center space-x-2 ml-2">
+      <div className="navbar-start flex items-center space-x-2 ml-4">
         <Link to="/">
         <img src={logo} alt="Logo" className="w-10 h-10" />
         </Link>
@@ -113,7 +113,7 @@ const Navbar = () => {
       </div>
       
       {/* Navbar End */}
-      <div className="navbar-end hidden lg:flex items-center space-x-2">
+      <div className="navbar-end hidden lg:flex items-center space-x-4 mr-4">
       <ThemeToggle></ThemeToggle>
         {user ? (
           <div className="relative group flex items-center">
@@ -151,13 +151,13 @@ const Navbar = () => {
         ) : (
           <>
             <Link
-              className="bg-sunflower-yellow hover:bg-dark-sunflower-yellow text-deep-blue px-4 py-1 rounded"
+              className="btn btn-sm bg-sunflower-yellow hover:bg-dark-sunflower-yellow text-deep-blue px-4 py-1 rounded"
               to="/login"
             >
               Log In
             </Link>
             <Link
-              className="bg-sunflower-yellow hover:bg-dark-sunflower-yellow text-deep-blue px-4 py-1 rounded"
+              className="btn btn-sm  hover:bg-dark-sunflower-yellow text-deep-blue px-4 py-1 rounded"
               to="/register"
             >
               Register
@@ -167,7 +167,7 @@ const Navbar = () => {
       </div>
       {/* Hamburger Menu */}
       <div className="lg:hidden ml-auto">
-        <button onClick={toggleMenu} className="text-white focus:outline-none">
+        <button onClick={toggleMenu} className=" focus:outline-none">
           {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
       </div>

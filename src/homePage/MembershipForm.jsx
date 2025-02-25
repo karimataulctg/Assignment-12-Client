@@ -20,7 +20,7 @@ const MembershipForm = () => {
       return;
     }
 
-    axios.post('http://localhost:5000/apply-coupon', { couponCode, membershipType })
+    axios.post('https://product-hunt-server-two.vercel.app/apply-coupon', { couponCode, membershipType })
       .then((response) => {
         const { discountAmount } = response.data;
         const prices = { basic: 100, premium: 200, elite: 300 };
@@ -41,7 +41,7 @@ const MembershipForm = () => {
   };
 
   return (
-  <div className='my-2 py-6 '>
+  <div className='card m-6 rounded-lg py-2 '>
       <form onSubmit={handleSubmit} className="card membership-form w-full py-4 max-w-3xl mx-auto flex flex-col justify-center items-center space-y-4 p-6  shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Purchase Membership</h2>
       <div className="form-control w-full">
