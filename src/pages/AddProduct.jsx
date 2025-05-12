@@ -29,7 +29,7 @@ const AddProduct = () => {
       createdAt: new Date(),
     };
 
-    fetch('http://localhost:5000', {
+    fetch('https://product-hunt-server-two.vercel.app', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(productData),

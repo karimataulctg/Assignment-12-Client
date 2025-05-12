@@ -22,7 +22,7 @@ const Profile = () => {
       cancelButtonText: "No, cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/subscribe/${user._id}`, {
+        fetch(`https://product-hunt-server-two.vercel.app/users/subscribe/${user._id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
         })
