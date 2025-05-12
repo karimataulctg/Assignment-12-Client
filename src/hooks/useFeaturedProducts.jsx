@@ -5,7 +5,7 @@ const useFeaturedProducts = () => {
   return useQuery({
     queryKey: ['featuredProducts'],
     queryFn: async () => {
-      const response = await axios.get('https://product-hunt-server-two.vercel.app/products?featured=true');
+      const response = await axios.get('http://localhost:5000/products?featured=true');
       return response.data;
     }
   });

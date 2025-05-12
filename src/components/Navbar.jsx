@@ -52,7 +52,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar  sticky z-10 top-0 opacity-80 bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800 text-white shadow-lg">
+    <div className="navbar  sticky z-10 top-0 opacity-90 bg-blue-900 text-white shadow-lg">
       {/* Navbar Start */}
       <div className="navbar-start flex items-center space-x-2 ml-4">
         <Link to="/">

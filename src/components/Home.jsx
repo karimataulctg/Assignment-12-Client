@@ -7,6 +7,7 @@ import FAQ from './FAQ';
 import HomePage from '../homePage/HomePage';
 import MembershipForm from '../homePage/MembershipForm';
 import NewArrivalsBestSellers from '../homePage/NewArrivalsBestSellers';
+import TestimonialsPage from '../pages/TestimonialsPage';
 
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
             <NewArrivalsBestSellers></NewArrivalsBestSellers>
             <HomePage></HomePage>
             <MembershipForm></MembershipForm>
+            <TestimonialsPage></TestimonialsPage>
             <AboutUs></AboutUs>
             <FAQ></FAQ>
             

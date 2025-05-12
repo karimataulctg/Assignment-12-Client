@@ -9,7 +9,7 @@ const ProductReviewQueue = () => {
 
   useEffect(() => {
     // Fetch all products
-    axios.get('https://product-hunt-server-two.vercel.app')
+    axios.get('http://localhost:5000')
       .then((response) => {
         const sortedProducts = response.data.sort((a, b) => {
           if (a.status === 'Pending' && b.status !== 'Pending') return -1;
@@ -28,7 +28,7 @@ const ProductReviewQueue = () => {
   };
 
   const handleMakeFeatured = (productId) => {
-    axios.put(`https://product-hunt-server-two.vercel.app/${productId}/feature`)
+    axios.put(`http://localhost:5000/${productId}/feature`)
       .then(() => {
         Swal.fire('Success', 'Product marked as featured.', 'success');
         setProducts((prevProducts) => prevProducts.map((product) =>
@@ -41,7 +41,7 @@ const ProductReviewQueue = () => {
   };
 
   const handleAccept = (productId) => {
-    axios.put(`https://product-hunt-server-two.vercel.app/${productId}/status`, { status: 'Accepted' })
+    axios.put(`http://localhost:5000/${productId}/status`, { status: 'Accepted' })
       .then(() => {
         Swal.fire('Success', 'Product accepted.', 'success');
         setProducts((prevProducts) => prevProducts.map((product) =>
@@ -54,7 +54,7 @@ const ProductReviewQueue = () => {
   };
 
   const handleReject = (productId) => {
-    axios.put(`https://product-hunt-server-two.vercel.app/${productId}/status`, { status: 'Rejected' })
+    axios.put(`http://localhost:5000/${productId}/status`, { status: 'Rejected' })
       .then(() => {
         Swal.fire('Success', 'Product rejected.', 'success');
         setProducts((prevProducts) => prevProducts.map((product) =>

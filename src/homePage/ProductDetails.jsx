@@ -20,7 +20,7 @@ const ProductDetails = () => {
     if (!user) {
       navigate('/login');
     } else {
-      fetch(`https://product-hunt-server-two.vercel.app/products/${id}/upvote`, {
+      fetch(`http://localhost:5000/products/${id}/upvote`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const ProductDetails = () => {
     if (!user) {
       navigate('/login');
     } else {
-      fetch(`https://product-hunt-server-two.vercel.app/products/${id}/report`, {
+      fetch(`http://localhost:5000/products/${id}/report`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -7,7 +7,7 @@ import { GiSelfLove } from "react-icons/gi";
 import Swal from "sweetalert2";
 
 const fetchProducts = async () => {
-  const { data } = await axios.get("https://product-hunt-server-two.vercel.app/products");
+  const { data } = await axios.get("http://localhost:5000/products");
   return data.slice(-8).reverse();
 };
 
@@ -21,7 +21,7 @@ const FeaturedProducts = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: "products",
+    queryKey: ["products"],
     queryFn: fetchProducts,
   });
 
@@ -32,7 +32,7 @@ const FeaturedProducts = () => {
     }
 
     axios
-      .post(`https://product-hunt-server-two.vercel.app/products/${product._id}/upvote`, {
+      .post(`http://localhost:5000/products/${product._id}/upvote`, {
         email: user.email,
       })
       .then((response) => {

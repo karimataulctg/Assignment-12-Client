@@ -5,7 +5,7 @@ const useReviews = (productId) => {
   return useQuery({
     queryKey: ['reviews', productId],
     queryFn: async () => {
-      const response = await axios.get(`https://product-hunt-server-two.vercel.app/reviews?productId=${productId}`);
+      const response = await axios.get(`http://localhost:5000/reviews?productId=${productId}`);
       return response.data;
     }
   });
