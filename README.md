@@ -15,8 +15,36 @@ Visit our live site at [https://product-hunt-a156b.web.app/](https://product-hun
 - **Responsive Design**: Our website is fully responsive, ensuring a seamless experience on both desktop and mobile devices.
 - **Real-Time Updates**: See the latest product updates and trends in real-time, keeping you up-to-date with the newest innovations.
 
-## Contributing
-We welcome contributions from the community! If you'd like to contribute, please fork the repository and create a pull request with your changes.
+## Tech Stack
+
+**Frontend:**
+- React (with React Router for navigation)
+- Tailwind CSS (styling)
+- Heroicons (icons)
+
+**Backend Services:**
+- Firebase:
+  - Firestore (database)
+  - Authentication (user management)
+  - Hosting (deployment)
+
+**Development Tools:**
+- npm (package management)
+- Firebase CLI (deployment)
+
+## Setup & Installation
+
+### Prerequisites
+- Node.js v16+ and npm
+- Firebase account (free tier)
+- Google account for authentication setup
+
+### Local Development
+
+1. **Clone repository**
+   ```bash
+   git clone [https://github.com/karimataulctg/Assignment-12-Client]
+   cd product-hunt-clone
 
 
 

@@ -64,7 +64,7 @@ const TestimonialsPage = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16">
+        {/* <div className="text-center mt-16">
           <h2 className="text-3xl font-bold mb-6">Join Our Growing Community</h2>
           <button className="btn btn-primary btn-lg">
             Share Your Product Now
@@ -72,7 +72,7 @@ const TestimonialsPage = () => {
               <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
             </svg>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
