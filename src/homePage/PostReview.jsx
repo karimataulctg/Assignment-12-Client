@@ -23,7 +23,7 @@ const PostReview = ({ productId }) => {
       createdAt: new Date(),
     };
 
-    fetch('https://product-hunt-server-two.vercel.app/reviews', {
+    fetch('http://localhost:5000/reviews', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(reviewData),

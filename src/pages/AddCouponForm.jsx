@@ -18,7 +18,7 @@ const AddCouponForm = () => {
       discountAmount: parseFloat(discountAmount),
     };
 
-    axios.post('https://product-hunt-server-two.vercel.app/coupons', newCoupon)
+    axios.post('http://localhost:5000/coupons', newCoupon)
       .then((response) => {
         Swal.fire('Success', response.data.message, 'success');
         // Reset form fields

@@ -7,7 +7,7 @@ const NewArrivalsBestSellers = () => {
 
   useEffect(() => {
     axios
-      .get("https://product-hunt-server-two.vercel.app/products")
+      .get("http://localhost:5000/products")
       .then((response) => {
         setProducts(response.data);
         setLoading(false);

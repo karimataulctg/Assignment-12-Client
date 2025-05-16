@@ -11,7 +11,7 @@ const UpdateProduct = () => {
 
   useEffect(() => {
     // Fetch existing product details
-    fetch(`https://product-hunt-server-two.vercel.app/${id}`)
+    fetch(`http://localhost:5000/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
@@ -36,7 +36,7 @@ const UpdateProduct = () => {
       updatedAt: new Date(),
     };
 
-    fetch(`https://product-hunt-server-two.vercel.app/${id}`, {
+    fetch(`http://localhost:5000/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedProductData),

@@ -29,7 +29,7 @@ const Dashboard = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed md:static top-0 left-0 min-h-screen w-64 bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800 text-white p-4 transform ${
+        className={`fixed md:static top-0 left-0 min-h-screen w-64 bg-blue-700 text-white p-4 transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 transition-transform duration-300 ease-in-out z-40`}
       >

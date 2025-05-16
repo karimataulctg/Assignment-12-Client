@@ -86,41 +86,43 @@ const AllProducts = () => {
 
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 m-2 gap-6">
-        {currentProducts.length > 0 ? (
-          currentProducts.map((product) => (
-            <div
-              key={product._id}
-              className="card bg-white shadow-md rounded-lg overflow-hidden"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full rounded-t-lg h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                <div className="tags mb-4">
-                  {product.tags?.map((tag) => (
-                    <span key={tag} className="badge badge-secondary mr-2">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <button
-                  onClick={() => navigate(`/productDetails/${product._id}`)}
-                  className="btn btn-primary w-full"
-                >
-                  Details
-                </button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p className="text-red-500 text-center col-span-3">
-            No products found.
-          </p>
-        )}
+  {currentProducts.length > 0 ? (
+    currentProducts.map((product) => (
+      <div
+        key={product._id}
+        className="card bg-white shadow-md rounded-lg overflow-hidden flex flex-col" // Added flex-col
+      >
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full rounded-t-lg h-48 object-cover flex-shrink-0" // Added flex-shrink-0
+        />
+        <div className="p-4 flex flex-col flex-grow"> {/* Added flex properties */}
+          <div className="mb-2">
+            <h3 className="text-xl font-bold">{product.name}</h3>
+          </div>
+          <div className="tags mb-4 flex-grow"> {/* Added flex-grow */}
+            {product.tags?.map((tag) => (
+              <span key={tag} className="badge badge-secondary mr-2 mb-2">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <button
+            onClick={() => navigate(`/productDetails/${product._id}`)}
+            className="btn btn-primary w-full mt-auto" // Added mt-auto
+          >
+            Details
+          </button>
+        </div>
       </div>
+    ))
+  ) : (
+    <p className="text-red-500 text-center col-span-3">
+      No products found.
+    </p>
+  )}
+</div>
 
       {/* Pagination Controls */}
       <div className="mt-8 flex justify-center gap-4">

@@ -25,7 +25,7 @@ const TrendingProducts = () => {
 
     try {
       const response = await fetch(
-        `https://product-hunt-server-two.vercel.app/products/${product._id}/upvote`,
+        `http://localhost:5000/products/${product._id}/upvote`,
         {
           method: "POST",
           headers: {
@@ -49,60 +49,55 @@ const TrendingProducts = () => {
   };
 
   return (
-    <div className="trending-products-section m-6">
-      <h2 className="text-center text-2xl font-bold mb-6">Trending Products</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products && products.length > 0 ? (
-          products.map((product) => (
-            <div
-              key={product._id}
-              className="card shadow-md rounded-lg overflow-hidden"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-48 rounded-t-xl object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-xl font-bold mb-2">
-                  <a
-                    href={`/product/${product._id}`}
-                    className="hover:underline"
-                  >
-                    {product.name}
-                  </a>
-                </h3>
-                <div className="tags mb-4">
-                  {product.tags.map((tag) => (
-                    <span key={tag} className="badge badge-secondary mr-2">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <button
-                  onClick={() => handleUpvote(product)}
-                  disabled={product.owner.email === user?.email}
-                  className="btn btn-primary w-full flex items-center justify-center"
-                >
-                  <GiSelfLove className="mr-2" />
-                  {product.votes} Votes
-                </button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>No trending products available.</p>
-        )}
-      </div>
-      {/* <div className="mt-6 text-center">
-        <button
-          onClick={() => navigate("/allProducts")}
-          className="btn btn-secondary"
+   <div className="trending-products-section m-6">
+  <h2 className="text-center text-2xl font-bold mb-6">Trending Products</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {products && products.length > 0 ? (
+      products.map((product) => (
+        <div
+          key={product._id}
+          className="card shadow-md rounded-lg overflow-hidden flex flex-col h-full"
         >
-          Show All Products
-        </button>
-      </div> */}
-    </div>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-48 rounded-t-xl object-cover"
+          />
+          <div className="p-4 flex flex-col flex-grow">
+            <h3 className="text-xl font-bold mb-2">
+              <a
+                href={`/product/${product._id}`}
+                className="hover:underline"
+              >
+                {product.name}
+              </a>
+            </h3>
+            <div className="tags mb-4 flex flex-wrap gap-2">
+              {product.tags.map((tag) => (
+                <span key={tag} className="badge badge-secondary">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="mt-auto">
+              <button
+                onClick={() => handleUpvote(product)}
+                disabled={product.owner.email === user?.email}
+                className="btn btn-primary w-full flex items-center justify-center h-12"
+              >
+                <GiSelfLove className="mr-2" />
+                <span className="whitespace-nowrap">{product.votes} Votes</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      ))
+    ) : (
+      <p>No trending products available.</p>
+    )}
+  </div>
+</div>
+     
   );
 };
 
