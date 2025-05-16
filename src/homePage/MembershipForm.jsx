@@ -20,7 +20,7 @@ const MembershipForm = () => {
       return;
     }
 
-    axios.post('http://localhost:5000/apply-coupon', { couponCode, membershipType })
+    axios.post('https://product-hunt-server-two.vercel.app/apply-coupon', { couponCode, membershipType })
       .then((response) => {
         const { discountAmount } = response.data;
         const prices = { basic: 100, premium: 200, elite: 300 };

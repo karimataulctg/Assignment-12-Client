@@ -7,7 +7,7 @@ const AdminStatistics = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/admin/statistics')
+    axios.get('https://product-hunt-server-two.vercel.app/admin/statistics')
       .then(response => setData(response.data))
       .catch(error => console.error('Error:', error));
   }, []);

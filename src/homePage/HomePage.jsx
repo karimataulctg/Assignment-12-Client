@@ -9,7 +9,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/coupons/valid")
+      .get("https://product-hunt-server-two.vercel.app/coupons/valid")
       .then((response) => {
         setCoupons(response.data);
       })
